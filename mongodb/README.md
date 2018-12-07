@@ -38,7 +38,7 @@ Get the IP of mongodb pod
 # oc get pods -o wide
 ```
 
-Go inside the pod mongodb pod
+Go inside the mongodb pod
 ```
 # oc rsh pod_name
 ```
@@ -48,7 +48,7 @@ Delete databse
 # scl enable rh-mongodb32 -- mongo -u redhat -p redhat $mongodb_ip:27017/sampledb --eval 'db.usertable.remove({})'
 ```
 
-Go inside the pod ycsb pod
+Go inside the ycsb pod
 ```
 # oc rsh pod_name
 ```
