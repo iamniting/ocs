@@ -1,2 +1,1 @@
-# ocs
-# openshift container storage
+# ocs: openshift container storage
