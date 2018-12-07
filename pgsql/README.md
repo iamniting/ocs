@@ -31,12 +31,12 @@ Scaleup databse ($scaling can be any integer)
 # pgbench -i -s $scaling sampledb
 ```
 
-Run transactions on the database($clients, $threads, $transactions can be any integer)
+Run transactions on the database ($clients, $threads, $transactions can be any integer)
 ```
 # pgbench -c $clients -j $threads -t $transactions sampledb
 ```
 
-Run transactions according to time($clients, $threads, $time can be any integer)
+Run transactions according to time ($clients, $threads, $time can be any integer)
 ```
 # pgbench -c $clients -j $threads -T $time sampledb
 ```
