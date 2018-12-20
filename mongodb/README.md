@@ -1,4 +1,4 @@
-## install mongodb pod on openshift container platform using ocs pvc claim
+## configure mongodb pod on openshift container platform using ocs pvc claim
 
 Create a template mongodb-persistent-glusterfs
 ```
@@ -19,7 +19,7 @@ Verify that pod is up and running
 # oc get pods
 ```
 
-## install YCSB pod
+## configure YCSB pod to run workload on mongodb
 
 Create DC of YCSB pod
 ```
