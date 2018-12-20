@@ -1,4 +1,4 @@
-## configure pgsql pod on openshift container platform using ocs pvc claim
+## Configure pgsql pod on openshift container platform using ocs pvc claim
 
 Create a template postgresql-persistent-glusterfs
 ```

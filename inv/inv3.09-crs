@@ -1,0 +1,136 @@
+[OSEv3:children]
+masters
+nodes
+etcd
+glusterfs
+glusterfs_registry
+
+[OSEv3:vars]
+install_method=rpm
+os_update=false
+install_update_docker=true
+docker_storage_driver=devicemapper
+ansible_ssh_user=root
+openshift_release=v3.9
+oreg_url=registry.access.redhat.com/openshift3/ose-${component}:v3.9
+openshift_cockpit_deployer_prefix=registry.access.redhat.com/openshift3/
+openshift_docker_insecure_registries=registry.access.redhat.com
+openshift_deployment_type=openshift-enterprise
+openshift_web_console_install=true
+openshift_enable_service_catalog=false
+osm_use_cockpit=false
+osm_cockpit_plugins=['cockpit-kubernetes']
+openshift_node_kubelet_args={'pods-per-core': ['10'], 'max-pods': ['250'], 'image-gc-high-threshold': ['90'], 'image-gc-low-threshold': ['80']}
+openshift_hosted_registry_selector="role=node,registry=enabled"
+openshift_hosted_router_selector="role=node,router=enabled"
+debug_level=5
+openshift_set_hostname=true
+openshift_override_hostname_check=true
+openshift_disable_check=docker_image_availability
+openshift_check_min_host_disk_gb=2
+openshift_check_min_host_memory_gb=1
+openshift_portal_net=172.31.0.0/16
+openshift_master_cluster_method=native
+openshift_clock_enabled=true
+
+openshift_master_dynamic_provisioning_enabled=true
+
+
+# logging
+openshift_logging_install_logging=true
+openshift_logging_es_pvc_dynamic=true
+openshift_logging_kibana_nodeselector={"region": "infra"}
+openshift_logging_curator_nodeselector={"region": "infra"}
+openshift_logging_es_nodeselector={"region": "infra"}
+openshift_logging_es_pvc_size=20Gi
+openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
+
+
+# metrics
+openshift_metrics_install_metrics=true
+openshift_metrics_storage_kind=dynamic
+openshift_metrics_hawkular_nodeselector={"region": "infra"}
+openshift_metrics_cassandra_nodeselector={"region": "infra"}
+openshift_metrics_heapster_nodeselector={"region": "infra"}
+openshift_metrics_storage_volume_size=20Gi
+openshift_metrics_cassandra_pvc_storage_class_name="glusterfs-registry-block"
+
+
+# glusterfs
+openshift_storage_glusterfs_namespace=glusterfs
+openshift_storage_glusterfs_storageclass=true
+openshift_storage_glusterfs_storageclass_default=false
+openshift_storage_glusterfs_block_storageclass=true
+openshift_storage_glusterfs_block_storageclass_default=false
+openshift_storage_glusterfs_block_deploy=true
+openshift_storage_glusterfs_block_host_vol_create=true
+openshift_storage_glusterfs_block_host_vol_size=100
+openshift_storage_glusterfs_is_native=false
+openshift_storage_glusterfs_heketi_is_native=true
+openshift_storage_glusterfs_heketi_executor=ssh
+openshift_storage_glusterfs_heketi_ssh_port=22
+openshift_storage_glusterfs_heketi_ssh_user=root
+openshift_storage_glusterfs_heketi_ssh_sudo=false
+openshift_storage_glusterfs_heketi_ssh_keyfile="/root/.ssh/id_rsa"
+
+
+# glusterfs_registry
+openshift_storage_glusterfs_registry_namespace=glusterfs-registry
+openshift_storage_glusterfs_registry_storageclass=true
+openshift_storage_glusterfs_registry_storageclass_default=false
+openshift_storage_glusterfs_registry_block_storageclass=true
+openshift_storage_glusterfs_registry_block_storageclass_default=false
+openshift_storage_glusterfs_registry_block_deploy=true
+openshift_storage_glusterfs_registry_block_host_vol_create=true
+openshift_storage_glusterfs_registry_block_host_vol_size=100
+openshift_storage_glusterfs_registry_is_native=false
+openshift_storage_glusterfs_registry_heketi_is_native=true
+openshift_storage_glusterfs_registry_heketi_executor=ssh
+openshift_storage_glusterfs_registry_heketi_ssh_port=22
+openshift_storage_glusterfs_registry_heketi_ssh_user=root
+openshift_storage_glusterfs_registry_heketi_ssh_sudo=false
+openshift_storage_glusterfs_registry_heketi_ssh_keyfile="/root/.ssh/id_rsa"
+
+# glusterfs_registry_storage
+openshift_hosted_registry_storage_kind=glusterfs
+openshift_hosted_registry_storage_volume_size=20Gi
+
+
+openshift_storage_glusterfs_heketi_admin_key='adminkey'
+openshift_storage_glusterfs_heketi_user_key='heketiuserkey'
+
+
+openshift_storage_glusterfs_image='registry.access.redhat.com/rhgs3/rhgs-server-rhel7'
+openshift_storage_glusterfs_version=v3.9
+
+openshift_storage_glusterfs_heketi_image='registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7'
+openshift_storage_glusterfs_heketi_version=v3.9
+
+openshift_storage_glusterfs_block_image='registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7'
+openshift_storage_glusterfs_block_version=v3.9
+
+
+openshift_master_cluster_hostname=dhcp46-111.lab.eng.blr.redhat.com
+openshift_master_cluster_public_hostname=dhcp46-111.lab.eng.blr.redhat.com
+
+[masters]
+dhcp46-111.lab.eng.blr.redhat.com
+
+[etcd]
+dhcp46-111.lab.eng.blr.redhat.com
+
+[nodes]
+dhcp46-111.lab.eng.blr.redhat.com openshift_node_labels="{'role': 'node','region': 'primary'}"
+dhcp46-112.lab.eng.blr.redhat.com openshift_node_labels="{'role': 'node','registry': 'enabled','router': 'enabled', 'region': 'infra'}"
+dhcp46-113.lab.eng.blr.redhat.com openshift_node_labels="{'role': 'node','region': 'primary'}"
+dhcp46-114.lab.eng.blr.redhat.com openshift_node_labels="{'role': 'node','region': 'primary'}"
+
+[glusterfs]
+dhcp46-115.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.115
+dhcp46-116.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.116
+dhcp46-117.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.117
+
+[glusterfs_registry]
+dhcp46-118.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.118
+dhcp46-119.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.119
+dhcp46-120.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.120

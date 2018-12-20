@@ -1,4 +1,4 @@
-## configure mongodb pod on openshift container platform using ocs pvc claim
+## Configure mongodb pod on openshift container platform using ocs pvc claim
 
 Create a template mongodb-persistent-glusterfs
 ```
