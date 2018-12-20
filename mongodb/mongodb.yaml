@@ -29,7 +29,6 @@ metadata:
     tags: database,mongodb
   creationTimestamp: 2018-03-23T11:57:05Z
   name: mongodb-persistent-glusterfs
-  namespace: openshift
   resourceVersion: "824"
   selfLink: /apis/template.openshift.io/v1/namespaces/openshift/templates/mongodb-persistent
   uid: 4e1b6c02-2e91-11e8-bc3e-02b5874ae424
