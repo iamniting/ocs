@@ -1,4 +1,4 @@
-## configure amq-broker pod on openshift container platform using ocs pvc claim
+## Configure amq-broker pod on openshift container platform using ocs pvc claim
 
 Create a template amq-broker-72-persistence 
 ```                                                                             
