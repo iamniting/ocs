@@ -1,4 +1,4 @@
-# install pgsql pod on openshift container platform using ocs pvc claim
+## configure pgsql pod on openshift container platform using ocs pvc claim
 
 Create a template postgresql-persistent-glusterfs
 ```
@@ -19,7 +19,7 @@ Verify that pod is up and running
 # oc get pods
 ```
 
-## Run test on postgresql pod
+## Run workload on postgresql pod
 
 Go inside the pod
 ```
