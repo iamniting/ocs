@@ -29,7 +29,6 @@ metadata:
     tags: database,postgresql
   creationTimestamp: 2018-12-06T11:15:39Z
   name: postgresql-persistent-glusterfs
-  namespace: openshift
   resourceVersion: "2171702"
   selfLink: /apis/template.openshift.io/v1/namespaces/openshift/templates/postgresql-persistent-glusterfs
   uid: 434e547a-f948-11e8-a6c7-005056a58440
