@@ -4,8 +4,8 @@
 
 # variables
 name=broker-001
-StorageClass=glusterfs-sc
 nameSpace=amq
+storageClass=glusterfs-sc
 volumeCapacity=200Gi
 
 R='\033[1;31m'
@@ -16,7 +16,7 @@ echo -e "\n${G}Creating new project $nameSpace${N}"
 oc create ns $nameSpace
 
 echo -e "\n${G}Creating a $name SVC, STS, Route${N}"
-oc new-app amq.yaml -n $nameSpace -p APPLICATION_NAME=$name -p STORAGE_CLASS=$StorageClass -p VOLUME_CAPACITY=$volumeCapacity
+oc new-app amq.yaml -n $nameSpace -p APPLICATION_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity
 
 echo -e "\n${G}Waiting for pvc to be bound for 1 minute${N}"
 for i in {1..6}; do

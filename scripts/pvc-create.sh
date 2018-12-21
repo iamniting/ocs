@@ -6,8 +6,8 @@
 
 
 name=$1
-storage_size=$2
-storage_class=glusterfs-sc
+storageSize=$2
+storageClass=glusterfs-sc
 
 
 echo "kind: PersistentVolumeClaim
@@ -15,10 +15,10 @@ apiVersion: v1
 metadata:
   name: $name
   annotations:
-    volume.beta.kubernetes.io/storage-class: $storage_class
+    volume.beta.kubernetes.io/storage-class: $storageClass
 spec:
   accessModes:
    - ReadWriteOnce
   resources:
     requests:
-      storage: $storage_size""Gi" | oc create -f -
+      storage: $storageSize""Gi" | oc create -f -

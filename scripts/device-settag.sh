@@ -5,9 +5,9 @@
 # eg. sh device-settag.sh
 
 
-for device_id in `sh device-info.sh | grep "Device Id" | cut -c 12-`
+for deviceID in `sh device-info.sh | grep "Device Id" | cut -c 12-`
 do
-	heketi-cli device info $id | grep "Name"
+	heketi-cli device info $deviceID | grep "Name"
 	read var
 
     if [ "$var" == "d" ]
@@ -25,5 +25,5 @@ do
         var="supported"
     fi
 
-    heketi-cli device settags $device_id arbiter:$var
+    heketi-cli device settags $deviceID arbiter:$var
 done

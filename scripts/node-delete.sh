@@ -7,9 +7,9 @@
 
 id=$1
 
-for device_id in `heketi-cli node info $id | grep "Bricks" | awk '{print $1}' | cut -c 4-`
+for deviceID in `heketi-cli node info $id | grep "Bricks" | awk '{print $1}' | cut -c 4-`
 do
-	sh device_delete.sh $device_id
+	sh device_delete.sh $deviceID
 done
 
 heketi-cli node disable $id

@@ -2,15 +2,15 @@
 # eg. sh set-vol-ops-file-mongodb.sh
 
 
-pvc_name=mongodb-001
-glusterfs_ns=glusterfs
-namespace=mongodb
+pvcName=mongodb-001
+glusterfsNameSpace=glusterfs
+nameSpace=mongodb
 
-gluster_pod_name=`oc -n $glusterfs_ns get pods -l glusterfs=storage-pod | awk '{print $1}' | tail -n 1`
-pv_name=`oc -n $namespace get pvc $pvc_name -o=custom-columns=:.spec.volumeName --no-headers`
-vol_name=`oc -n $namespace get pv $pv_name -o=custom-columns=:.spec.glusterfs.path --no-headers`
+podName=`oc get pods -n $glusterfsNameSpace -l glusterfs=storage-pod | awk '{print $1}' | tail -n 1`
+pvName=`oc -n $nameSpace get pvc $pvcName -o=custom-columns=:.spec.volumeName --no-headers`
+volName=`oc -n $nameSpace get pv $pvName -o=custom-columns=:.spec.glusterfs.path --no-headers`
 
-vol_ops="performance.client-io-threads on
+volOps="performance.client-io-threads on
 nfs.disable on
 transport.address-family inet
 cluster.choose-local false
@@ -25,11 +25,11 @@ performance.quick-read off
 performance.open-behind on
 performance.stat-prefetch off"
 
-oc -n $glusterfs_ns exec -i $gluster_pod_name -- bash -c "gluster v info $vol_name"
+oc -n $glusterfsNameSpace exec -i $podName -- bash -c "gluster v info $volName"
 
 echo
 
 while read -r line; do
     echo setting vol option $line
-    oc exec -n $glusterfs_ns $gluster_pod_name -- gluster v set $vol_name $line
-done <<< "$vol_ops"
+    oc exec -n $glusterfsNameSpace $podName -- gluster v set $volName $line
+done <<< "$volOps"

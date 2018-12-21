@@ -5,9 +5,9 @@
 # eg. sh node-settag.sh
 
 
-for node_id in `sh node-info.sh | grep "Node Id" | cut -c 10-`
+for nodeID in `sh node-info.sh | grep "Node Id" | cut -c 10-`
 do
-	heketi-cli node info $node_id | grep -i 'storage hostname'
+	heketi-cli node info $nodeID | grep -i 'storage hostname'
 	read var
 
     if [ "$var" == "d" ]
@@ -25,5 +25,5 @@ do
         var="supported"
     fi
 
-    heketi-cli node settags $node_id arbiter:$var
+    heketi-cli node settags $nodeID arbiter:$var
 done

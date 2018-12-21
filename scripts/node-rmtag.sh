@@ -3,7 +3,7 @@
 # eg. sh node-rmtag.sh
 
 
-for node_id in `sh node-info.sh | grep -i "Node Id" | cut -c 10-`
+for nodeID in `sh node-info.sh | grep -i "Node Id" | cut -c 10-`
 do
-	heketi-cli node rmtags $node_id arbiter
+	heketi-cli node rmtags $nodeID arbiter
 done
