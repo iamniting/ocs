@@ -8,7 +8,7 @@ nameSpace=pgsql
 
 podName=`oc get pods -n $glusterfsNameSpace -l glusterfs=storage-pod | awk '{print $1}' | tail -n 1`
 pvName=`oc -n $nameSpace get pvc $pvcName -o=custom-columns=:.spec.volumeName --no-headers`
-volName=`oc -n $nameSpace get pv $pvcName -o=custom-columns=:.spec.glusterfs.path --no-headers`
+volName=`oc -n $nameSpace get pv $pvName -o=custom-columns=:.spec.glusterfs.path --no-headers`
 
 volOps="diagnostics.count-fop-hits on
 diagnostics.latency-measurement on
