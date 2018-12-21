@@ -3,9 +3,9 @@
 
 
 name=block-sc
-secretname=heketi-secret-block
-secretnamespace=glusterfs
-resturl=`oc get service heketi-storage -n $secretnamespace --no-headers\
+secretName=heketi-secret-block
+secretNameSpace=glusterfs
+restUrl=`oc get service heketi-storage -n $secretNameSpace --no-headers\
     -o=custom-columns=:.spec.clusterIP`
 
 echo "apiVersion: storage.k8s.io/v1
@@ -15,10 +15,10 @@ metadata:
 reclaimPolicy: Delete
 provisioner: gluster.org/glusterblock
 parameters:
-  resturl: http://$resturl:8080
+  resturl: http://$restUrl:8080
   restuser: admin
-  restsecretName: $secretname
-  restsecretNamespace: $secretnamespace
+  restsecretName: $secretName
+  restsecretNamespace: $secretNameSpace
   hacount: '3'
   chapauthenabled: 'true'
   volumenameprefix: blk" | oc create -f -

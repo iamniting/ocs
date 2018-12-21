@@ -4,8 +4,8 @@
 
 # variables
 name=postgresql-001
-storageClass=glusterfs-sc
 nameSpace=pgsql
+storageClass=glusterfs-sc
 volumeCapacity=200Gi
 memoryLimit=8192Mi
 

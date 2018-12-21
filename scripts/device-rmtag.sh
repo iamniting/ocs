@@ -3,7 +3,7 @@
 # eg. sh device-rmtag.sh
 
 
-for device_id in `sh device-info.sh | grep "Device Id" | cut -c 12-`
+for deviceID in `sh device-info.sh | grep "Device Id" | cut -c 12-`
 do
-	heketi-cli device rmtags $device_id arbiter
+	heketi-cli device rmtags $deviceID arbiter
 done

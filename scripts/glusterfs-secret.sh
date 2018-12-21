@@ -3,7 +3,7 @@
 
 
 name=heketi-secret-glusterfs
-namespace=glusterfs
+nameSpace=glusterfs
 # echo -n 'adminkey' | base64
 key='YWRtaW5rZXk='
 
@@ -11,7 +11,7 @@ echo "apiVersion: v1
 kind: Secret
 metadata:
   name: $name
-  namespace: $namespace
+  namespace: $nameSpace
 data:
   key: $key
 type: kubernetes.io/glusterfs" | oc create -f -
