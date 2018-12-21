@@ -20,7 +20,7 @@ G='\033[1;32m'
 N='\033[0m'
 
 for i in $(seq 1 $iterations); do
-    echo -e "\nRunning iteration $i" | tee -a $outputFile
+    echo -e "\n------ Running iteration $i ------" | tee -a $outputFile
     # delete database
     echo -e "\n${G}Deleting Database${N}"
     echo -e "\n****** Deleting existing database ******" >> $outputFile

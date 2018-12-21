@@ -37,7 +37,7 @@ for i in $(seq 1 $iterations); do
     # run load
     podName=`oc -n $nameSpace get pods -o=custom-columns=:.metadata.name --no-headers=true --selector deploymentconfig=$name`
     echo -e "\n${G}Running transactions on database${N}"
-    echo "****** Running iteration $i ******" | tee -a $outputFile
+    echo "------ Running iteration $i ------" | tee -a $outputFile
     (time oc -n $nameSpace exec -i $podName -- bash -c "pgbench -c $clients -j $threads -t $transactions sampledb")  2>&1 |& tee -a $outputFile
     echo | tee -a $outputFile
 done
