@@ -16,6 +16,8 @@ N='\033[0m'
 echo -e "\n${G}Creating new project $nameSpace${N}"
 oc create ns $nameSpace
 
+# oc tag registry.access.redhat.com/rhscl/mongodb-32-rhel7 mongodb:3.2 -n openshift; oc import-image mongodb:3.2 -n openshift &
+
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
 oc new-app mongodb.yaml -n $nameSpace -p DATABASE_SERVICE_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity -p MEMORY_LIMIT=$memoryLimit
 

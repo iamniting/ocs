@@ -16,6 +16,8 @@ N='\033[0m'
 echo -e "\n${G}Creating new project $nameSpace${N}"
 oc create ns $nameSpace
 
+# oc tag registry.access.redhat.com/rhscl/postgresql-96-rhel7 postgresql:9.6 -n openshift; oc import-image postgresql:9.6 -n openshift &
+
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
 oc new-app pgsql.yaml -n $nameSpace -p DATABASE_SERVICE_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity -p MEMORY_LIMIT=$memoryLimit
 
