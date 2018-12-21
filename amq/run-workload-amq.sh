@@ -17,14 +17,14 @@ echo | tee -a $outputFile
 
 for i in $(seq 1 $iterations); do
     podName=`oc get pods -n $nameSpace --no-headers=true --selector statefulset.kubernetes.io/pod-name=amq-$name-0 -o=custom-columns=:.metadata.name`
-    echo -e "\n${G}Running transactions on database${N}"
-    echo "Running iteration $i" | tee -a $outputFile
+    echo -e "${G}Running transactions on database${N}"
+    echo "------ Running iteration $i ------" | tee -a $outputFile
 
-    echo "Producing Messages" | tee -a $outputFile
+    echo "****** Producing Messages ******" | tee -a $outputFile
     (time oc -n $nameSpace exec -i $podName -- bash -c "./broker/bin/artemis producer --message-count=$messageCount --message-size=$messageSize")  2>&1 |& tee -a $outputFile
     echo | tee -a $outputFile
 
-    echo "Consuming Messages" | tee -a $outputFile
+    echo "****** Consuming Messages ******" | tee -a $outputFile
     (time oc -n $nameSpace exec -i $podName -- bash -c "./broker/bin/artemis consumer --message-count=$messageCount")  2>&1 |& tee -a $outputFile
     echo | tee -a $outputFile
 done
