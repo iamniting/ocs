@@ -17,6 +17,7 @@ echo | tee -a $outputFile
 
 for i in $(seq 1 $iterations); do
     podName=`oc get pods -n $nameSpace --no-headers=true --selector statefulset.kubernetes.io/pod-name=amq-$name-0 -o=custom-columns=:.metadata.name`
+
     echo -e "${G}Running transactions on database${N}"
     echo "------ Running iteration $i ------" | tee -a $outputFile
 
