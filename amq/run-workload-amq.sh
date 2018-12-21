@@ -1,28 +1,32 @@
-# This script is used for run load on amq pod
+# This script is used for run workload on amq pod
 # eg. sh run-workload-amq.sh
 
 
 # variables
-statefulset=broker-001
-namespace=amq
-iterations=11
-output_file=output-amq
+name=broker-001
+nameSpace=amq
+iterations=10
+messageCount=1000
+messageSize=1000
+outputFile=output-amq
 
 G='\033[1;32m'
 N='\033[0m'
 
-echo | tee -a $output_file
+echo | tee -a $outputFile
 
 for i in $(seq 1 $iterations); do
-    # run load
-    pod_name=`oc get pods -n $namespace --no-headers=true --selector statefulset.kubernetes.io/pod-name=amq-$NAME-0 -o=custom-columns=:.metadata.name`
+    podName=`oc get pods -n $nameSpace --no-headers=true --selector statefulset.kubernetes.io/pod-name=amq-$name-0 -o=custom-columns=:.metadata.name`
     echo -e "\n${G}Running transactions on database${N}"
-    echo "Running iteration $i" | tee -a $output_file
-    echo "Producing Messages" | tee -a $output_file
-    (time oc -n $namespace exec -i $pod_name -- bash -c "/broker/bin/artemis producer")  2>&1 |& tee -a $output_file
-    echo "Consuming Messages" | tee -a $output_file
-    (time oc -n $namespace exec -i $pod_name -- bash -c "/broker/bin/artemis consumer")  2>&1 |& tee -a $output_file
-    echo | tee -a $output_file
+    echo "Running iteration $i" | tee -a $outputFile
+
+    echo "Producing Messages" | tee -a $outputFile
+    (time oc -n $nameSpace exec -i $podName -- bash -c "./broker/bin/artemis producer --message-count=$messageCount --message-size=$messageSize")  2>&1 |& tee -a $outputFile
+    echo | tee -a $outputFile
+
+    echo "Consuming Messages" | tee -a $outputFile
+    (time oc -n $nameSpace exec -i $podName -- bash -c "./broker/bin/artemis consumer --message-count=$messageCount")  2>&1 |& tee -a $outputFile
+    echo | tee -a $outputFile
 done
 
-echo "*************************************************************************" >> $output_file
+echo "*************************************************************************" >> $outputFile
