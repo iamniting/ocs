@@ -9,7 +9,7 @@ scaling=800
 clients=10
 threads=2
 transactions=1000
-iterations=11
+iterations=10
 outputFile=output-pgsql
 
 podName=`oc -n $nameSpace get pods -o=custom-columns=:.metadata.name --no-headers=true --selector deploymentconfig=$name`
