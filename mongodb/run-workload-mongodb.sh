@@ -1,5 +1,5 @@
 # This script is used for run load on mongodb pod
-# eg. sh mongodb-load.sh
+# eg. sh run-workload-mongodb.sh
 
 
 threads=10

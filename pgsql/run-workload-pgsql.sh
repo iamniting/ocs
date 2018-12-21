@@ -1,5 +1,5 @@
 # This script is used for run load on pgsql pod
-# eg. sh run-workload.sh
+# eg. sh run-workload-pgsql.sh
 
 
 # variables
