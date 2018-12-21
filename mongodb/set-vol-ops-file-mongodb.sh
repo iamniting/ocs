@@ -1,5 +1,5 @@
 # This script is responsible for setting volume options on gluster for mongodb file volume
-# eg. sh set-vol-ops-file.sh
+# eg. sh set-vol-ops-file-mongodb.sh
 
 
 pvc_name=mongodb-001
@@ -29,8 +29,7 @@ oc -n $glusterfs_ns exec -i $gluster_pod_name -- bash -c "gluster v info $vol_na
 
 echo
 
-while read -r line
-do
+while read -r line; do
     echo setting vol option $line
     oc exec -n $glusterfs_ns $gluster_pod_name -- gluster v set $vol_name $line
 done <<< "$vol_ops"

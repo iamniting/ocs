@@ -201,8 +201,8 @@ parameters:
   name: POSTGRESQL_VERSION
   required: true
   value: "9.6"
-- description: Storage class to use
-  displayName: Storage class name
+- description: Storage Class Name of PVC.
+  displayName: Storage Class Name
   name: STORAGE_CLASS
   required: true
   value: glusterfs-storage

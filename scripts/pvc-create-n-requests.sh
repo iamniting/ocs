@@ -17,14 +17,11 @@ n=8
 
 create_pvc $begin $begin+$n-1
 
-while true
-do
+while true; do
     count=`oc get pvc | grep claim | grep Pending | wc -l`
-    if [ $count -lt $n -a $i -le $end ]
-    then
+    if [ $count -lt $n -a $i -le $end ]; then
         create_pvc $i $n-1-$count+$i
-    elif [ $i -gt $end ];
-    then
+    elif [ $i -gt $end ]; then
         break
     fi
 done

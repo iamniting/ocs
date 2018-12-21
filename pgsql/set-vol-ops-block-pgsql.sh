@@ -1,5 +1,5 @@
-# This script is responsible for setting volume options on gluster for mongodb block volume
-# eg. sh set-vol-ops-block.sh
+# This script is responsible for setting volume options on gluster for postgresql block volume
+# eg. sh set-vol-ops-block-pgsql.sh
 
 
 glusterfs_ns=glusterfs
@@ -34,8 +34,7 @@ oc -n $glusterfs_ns exec -i $gluster_pod_name -- bash -c "gluster v info $block_
 
 echo
 
-while read -r line
-do
+while read -r line; do
     echo setting vol option $line
     oc exec -n $glusterfs_ns $gluster_pod_name -- gluster v set $block_host_vol_name $line
 done <<< "$vol_ops"

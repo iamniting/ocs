@@ -1,17 +1,13 @@
 ## Configure pgsql pod on openshift container platform using ocs pvc claim
 
-Create a template postgresql-persistent-glusterfs
+Goto pgsql directory
 ```
 # cd ocs/pgsql
 ```
 
-```
-# oc create -f pgsql.yaml
-```
-
 Create new-app from the template
 ```
-# oc new-app postgresql-persistent-glusterfs -p DATABASE_SERVICE_NAME=postgresql -p MEMORY_LIMIT=1Gi -p VOLUME_CAPACITY=10Gi -p STORAGE_CLASS=glusterfs-storage
+# oc new-app pgsql.yaml -p DATABASE_SERVICE_NAME=postgresql -p MEMORY_LIMIT=1Gi -p VOLUME_CAPACITY=10Gi -p STORAGE_CLASS=glusterfs-storage
 ```
 
 Verify that pod is up and running

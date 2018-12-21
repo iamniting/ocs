@@ -20,7 +20,4 @@ spec:
           image: 'docker.io/hongkailiu/ycsb:002'
   triggers:
     - type: 'ConfigChange'
-  replicas: 1" > ycsb.yml
-
-oc create -f ycsb.yml
-rm -f ycsb.yml
+  replicas: 1" > oc create -f -
