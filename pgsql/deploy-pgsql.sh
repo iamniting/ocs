@@ -3,42 +3,41 @@
 
 
 # variables
-NAME=postgresql-001
-STORAGE_CLASS=glusterfs-sc
-NAMESPACE=pgsql
-VOLUME_CAPACITY=200Gi
-MEMORY_LIMIT=8192Mi
+name=postgresql-001
+storageClass=glusterfs-sc
+nameSpace=pgsql
+volumeCapacity=200Gi
+memoryLimit=8192Mi
 
 R='\033[1;31m'
 G='\033[1;32m'
 N='\033[0m'
 
-echo -e "\n${G}Creating new project $NAMESPACE${N}"
-oc create ns $NAMESPACE
+echo -e "\n${G}Creating new project $nameSpace${N}"
+oc create ns $nameSpace
 
-echo -e "\n${G}Creating a $NAME Secret, SVC, PVC, DC${N}"
-oc new-app pgsql.yaml -n $NAMESPACE -p DATABASE_SERVICE_NAME=$NAME -p STORAGE_CLASS=$STORAGE_CLASS -p VOLUME_CAPACITY=$VOLUME_CAPACITY -p MEMORY_LIMIT=$MEMORY_LIMIT
+echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
+oc new-app pgsql.yaml -n $nameSpace -p DATABASE_SERVICE_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity -p MEMORY_LIMIT=$memoryLimit
 
 echo -e "\n${G}Waiting for pvc to be bound for 1 minute${N}"
 for i in {1..6}; do
     sleep 10
-    var="$(oc get pvc -n $NAMESPACE $NAME -o=custom-columns=:.status.phase --no-headers)"
+    var="$(oc get pvc -n $nameSpace $name -o=custom-columns=:.status.phase --no-headers)"
     if [ "${var}" == 'Bound' ]; then
-        echo "PVC $NAME is in Bound state"
+        echo "PVC $name is in Bound state"
         break
     fi
-    echo "PVC $NAME is still in Pending state"
+    echo "PVC $name is still in Pending state"
 done
 
 echo -e "\n${G}Waiting for pod to be ready for 1 minute${N}"
 for i in {1..6}; do
     sleep 10
-    pod_name="$(oc get pods -n $NAMESPACE --no-headers=true --selector deploymentconfig=$NAME -o=custom-columns=:.metadata.name)"
-    var="$(oc get pods -n $NAMESPACE --no-headers=true --selector deploymentconfig=$NAME -o=custom-columns=:.status.containerStatuses[0].ready)"
+    podName="$(oc get pods -n $nameSpace --no-headers=true --selector deploymentconfig=$name -o=custom-columns=:.metadata.name)"
+    var="$(oc get pods -n $nameSpace --no-headers=true --selector deploymentconfig=$name -o=custom-columns=:.status.containerStatuses[0].ready)"
     if [ "${var}" == 'true' ]; then
-        echo "Pod $pod_name is ready"
+        echo "Pod $podName= is ready"
         break
-    else
-        echo "Waiting for Pod $pod_name to be ready"
     fi
+    echo "Waiting for Pod $podName= to be ready"
 done
