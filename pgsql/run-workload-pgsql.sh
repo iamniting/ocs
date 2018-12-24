@@ -50,7 +50,8 @@ echo "****** $outputFile ******" | tee -a results
 echo "****** $iterations transactins per second ******" | tee -a results
 echo $transactions | tee -a results
 
+iter=`echo $transactions | wc -w`
 sum=`cat $outputFile | grep tps | grep including | awk '{print $3}' | paste -sd+ | bc`
-res=`echo $sum/10 | bc`
+res=`echo $sum/$iter | bc`
 echo "average tps -> $res" | tee -a results
 echo | tee -a results
