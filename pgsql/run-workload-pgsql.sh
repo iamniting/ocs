@@ -10,8 +10,8 @@ clients=10
 threads=2
 transactions=1000
 iterations=10
-outputFile=output-pgsql
 
+outputFile=output-pgsql-scaling-$scaling-clients-$clients-threads-$threads-transactions-$transactions.$$
 podName=`oc -n $nameSpace get pods -o=custom-columns=:.metadata.name --no-headers=true --selector deploymentconfig=$name`
 
 G='\033[1;32m'
@@ -43,3 +43,14 @@ for i in $(seq 1 $iterations); do
 done
 
 echo "*************************************************************************" >> $outputFile
+
+# draw results
+transactions=`cat $outputFile | grep tps | grep including | awk '{print $3}'`
+echo "****** $outputFile ******" | tee -a results
+echo "****** $iterations transactins per second ******" | tee -a results
+echo $transactions | tee -a results
+
+sum=`cat $outputFile | grep tps | grep including | awk '{print $3}' | paste -sd+ | bc`
+res=`echo $sum/10 | bc`
+echo "average tps -> $res" | tee -a results
+echo | tee -a results
