@@ -2,14 +2,13 @@
 # eg. sh run-workload-mongodb.sh
 
 
+mongodbDC=mongodb-001
+ycsbDC=ycsb-001
+nameSpace=mongodb
 threads=10
 recordCount=1000
 operationCount=1000
 iterations=10
-
-nameSpace=mongodb
-mongodbDC=mongodb-001
-ycsbDC=ycsb-001
 
 outputFile=output-mongodb-threads-$threads-recordCount-$recordCount-operationCount-$operationCount.$$
 
