@@ -5,10 +5,11 @@
 # variables
 name=broker-001
 nameSpace=amq
-iterations=10
 messageCount=1000
 messageSize=1000
-outputFile=output-amq
+iterations=10
+
+outputFile=output-amq-messageCount-$messageCount-messageSize-$messageSize.$$
 
 G='\033[1;32m'
 N='\033[0m'
@@ -31,3 +32,15 @@ for i in $(seq 1 $iterations); do
 done
 
 echo "*************************************************************************" >> $outputFile
+
+# draw results
+timeMS=`cat $outputFile | grep "milli second" | awk '{print $10}'`
+echo "****** $outputFile ******" | tee -a results
+echo "****** $iterations transactins per second ******" | tee -a results
+echo $timeMS | tee -a results
+
+iter=`echo $timeMS | wc -w`
+sum=`cat $outputFile | grep "milli second" | awk '{print $10}' | paste -sd+ | bc`
+res=`echo $sum/$iter | bc`
+echo "average time in milli second -> $res" | tee -a results
+echo | tee -a results
