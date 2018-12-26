@@ -35,12 +35,12 @@ echo "*************************************************************************"
 
 # draw results
 timeMS=`cat $outputFile | grep "milli second" | awk '{print $10}'`
-echo "****** $outputFile ******" | tee -a results
-echo "****** $iterations transactins per second ******" | tee -a results
-echo $timeMS | tee -a results
+echo "****** $outputFile ******" | tee -a results-amq
+echo "****** $iterations transactins per second ******" | tee -a results-amq
+echo $timeMS | tee -a results-amq
 
 iter=`echo $timeMS | wc -w`
 sum=`cat $outputFile | grep "milli second" | awk '{print $10}' | paste -sd+ | bc`
 res=`echo $sum/$iter | bc`
-echo "average time in milli second -> $res" | tee -a results
-echo | tee -a results
+echo "average time in milli second -> $res" | tee -a results-amq
+echo | tee -a results-amq

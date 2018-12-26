@@ -47,20 +47,20 @@ echo "*************************************************************************"
 # draw results
 throughPutLoad=`cat $outputFile | grep Throughput | awk '{print $3}' | awk 'NR%2==1'`
 throughPutRun=`cat $outputFile | grep Throughput | awk '{print $3}' | awk 'NR%2==0'`
-echo "****** $outputFile ******" | tee -a results
-echo "****** $iterations throughPut ops per second for Load ******" | tee -a results
-echo $throughPutLoad | tee -a results
-echo "****** $iterations throughPut ops per second for Run ******" | tee -a results
-echo $throughPutRun | tee -a results
+echo "****** $outputFile ******" | tee -a results-mongodb
+echo "****** $iterations throughPut ops per second for Load ******" | tee -a results-mongodb
+echo $throughPutLoad | tee -a results-mongodb
+echo "****** $iterations throughPut ops per second for Run ******" | tee -a results-mongodb
+echo $throughPutRun | tee -a results-mongodb
 
 iter=`echo $throughPutLoad | wc -w`
 sum=`cat $outputFile | grep Throughput | awk '{print $3}' | awk 'NR%2==1' | paste -sd+ | bc`
 res=`echo $sum/$iter | bc`
-echo "average throughput(ops/sec) for Load -> $res" | tee -a results
+echo "average throughput(ops/sec) for Load -> $res" | tee -a results-mongodb
 
 iter=`echo $throughPutRun | wc -w`
 sum=`cat $outputFile | grep Throughput | awk '{print $3}' | awk 'NR%2==0' | paste -sd+ | bc`
 res=`echo $sum/$iter | bc`
-echo "average throughput(ops/sec) for Run -> $res" | tee -a results
+echo "average throughput(ops/sec) for Run -> $res" | tee -a results-mongodb
 
-echo | tee -a results
+echo | tee -a results-mongodb
