@@ -38,8 +38,8 @@ for i in {1..6}; do
     podName="$(oc get pods -n $nameSpace --no-headers=true --selector deploymentconfig=$name -o=custom-columns=:.metadata.name)"
     var="$(oc get pods -n $nameSpace --no-headers=true --selector deploymentconfig=$name -o=custom-columns=:.status.containerStatuses[0].ready)"
     if [ "${var}" == 'true' ]; then
-        echo "Pod $podName= is ready"
+        echo "Pod $podName is ready"
         break
     fi
-    echo "Waiting for Pod $podName= to be ready"
+    echo "Waiting for Pod $podName to be ready"
 done
