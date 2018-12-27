@@ -23,8 +23,8 @@ done
 hex=`find $parentDir -type f -name file -exec md5sum {} + | awk '{print $1}' | sort | md5sum`
 
 if [ "$hex" == "86d0e15641912f9087ad45d251710ef1  -" ]; then
-    echo "checksum is correct"
+    echo "******** checksum is correct ********"
     rm -rf $parentDir
 else
-    echo "checksum is not correct"
+    echo "******** checksum is not correct ********"
 fi
