@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars_files:
+    - external_vars.yaml
+  tasks:
+  - name: getting list of namespaces
+    command: oc get ns
+    register: out
+    tags: test
+  - debug: var=out.stdout_lines
+
+  - name: creating new project {{ project_name }}
+    command: oc new-project {{ project_name }}
+    register: out
+    tags: setup
+  - debug: var=out.stdout_lines
