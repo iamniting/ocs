@@ -1,0 +1,74 @@
+---
+- hosts: all
+  vars_files:
+    - external_vars.yaml
+  tasks:
+  - name: registering system with subscription-manager
+    redhat_subscription:
+      state: present
+      username: "{{ username }}"
+      password: "{{ password }}"
+      pool_ids: "{{ pool_id }}"
+    tags: subscription
+
+  - name: disabling all repos
+    rhsm_repository:
+      name: '*'
+      state: disabled
+    tags: subscription
+
+  - name: enabling the repos
+    rhsm_repository:
+      name: "{{ repos }}"
+      state: enabled
+    tags: subscription
+
+  - name: install the packages
+    yum:
+      name: "{{ packages }}"
+      state: present
+    tags: yum
+
+  - name: update all packages
+    yum:
+      name: '*'
+      state: latest
+    tags: yum
+
+  - copy:
+      content: |
+        DEVS={{ docker_device }}
+        VG={{ docker_vg }}
+      dest: /etc/sysconfig/docker-storage-setup
+    tags: docker
+
+  - name: configuring docker
+    command: docker-storage-setup
+    tags: docker
+    register: out
+  - debug: var=out.stdout_lines
+
+  - name: enable docker service
+    command: "{{ item }}"
+    with_items:
+      - systemctl enable docker
+      - systemctl start docker
+      - systemctl is-active docker
+    tags: docker
+    register: out
+  - debug: var=out.stdout_lines
+
+  - name: generating keys
+    command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+    args:
+      creates: /root/.ssh/id_rsa
+    tags: ssh
+    register: out
+  - debug: var=out.stdout_lines
+
+  - name: making ssh less
+    command: sshpass -p "{{ vm_password }}" ssh-copy-id -o "StrictHostKeyChecking=no" -f "root@{{ item }}"
+    with_items: "{{ inventory_hostname }}"
+    tags: ssh
+    register: out
+  - debug: var=out.stdout_lines

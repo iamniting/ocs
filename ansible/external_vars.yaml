@@ -1,2 +1,50 @@
 ---
+### test
 project_name: test
+
+
+### ocp_preq
+# password of system for ssh less authentication
+vm_password: redhat
+
+# username of subscription manager account
+username: example@redhat.com
+
+# password of subscription manager account
+password: password
+
+# pool id for virtual machine is 8a85f98960dbf6510160df23eb447470
+# pool id for physical system is 8a85f98960dbf6510160df23e3367451
+pool_id: 8a85f98960dbf6510160df23eb447470
+
+# repos to enable
+repos:
+  - rhel-7-server-rpms
+  - rhel-7-server-extras-rpms
+  - rhel-7-server-optional-rpms
+  - rhel-7-fast-datapath-rpms
+  - rhel-7-server-ansible-2.6-rpms
+  - rhel-7-server-ose-3.11-rpms
+  - rh-gluster-3-client-for-rhel-7-server-rpms
+
+# packages to install
+packages:
+  - vim
+  - screen
+  - tree
+  - wget
+  - git
+  - net-tools
+  - bind-utils
+  - iptables-services
+  - bridge-utils
+  - bash-completion
+  - kexec-tools
+  - sos
+  - psacct
+  - openshift-ansible
+  - docker-1.13.1
+
+# docker configuration
+docker_device: /dev/sdc
+docker_vg: docker-vg
