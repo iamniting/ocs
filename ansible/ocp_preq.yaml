@@ -12,7 +12,7 @@
     register: out 
 
   - debug: var=out.stdout_lines
-	tags: ssh
+    tags: ssh
 
 - hosts: all
   vars_files:
@@ -63,7 +63,7 @@
     register: out
 
   - debug: var=out.stdout_lines
-	tags: docker
+    tags: docker
 
   - name: enable docker service
     command: "{{ item }}"
@@ -75,7 +75,7 @@
     register: out
 
   - debug: var=out.stdout_lines
-	tags: docker
+    tags: docker
 
   - name: generating keys
     command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
@@ -94,4 +94,4 @@
     register: out
 
   - debug: var=out.stdout_lines
-	tags: ssh
+    tags: ssh
