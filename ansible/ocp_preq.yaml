@@ -68,7 +68,7 @@
 
   - name: making ssh less
     command: sshpass -p "{{ vm_password }}" ssh-copy-id -o "StrictHostKeyChecking=no" -f "root@{{ item }}"
-    with_items: "{{ inventory_hostname }}"
+    with_items: "{{ play_hosts }}"
     tags: ssh
     register: out
   - debug: var=out.stdout_lines
