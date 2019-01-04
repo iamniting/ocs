@@ -11,7 +11,7 @@ JJB_DC_NAME=jjb-001
 NAMESPACE=jenkins
 STORAGECLASS=glusterfs-sc
 VOLUMECAPACITY=10Gi
-MEMORYLIMIT=1024Mi
+MEMORYLIMIT=8192Mi
 
 # oc tag registry.access.redhat.com/openshift3/jenkins-2-rhel7 jenkins:2 -n openshift; oc import-image jenkins:2 -n openshift &
 

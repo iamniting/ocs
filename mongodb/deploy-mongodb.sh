@@ -6,7 +6,7 @@
 name=mongodb-001
 nameSpace=mongodb
 storageClass=glusterfs-sc
-volumeCapacity=200Gi
+volumeCapacity=10Gi
 memoryLimit=8192Mi
 
 R='\033[1;31m'

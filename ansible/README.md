@@ -13,4 +13,3 @@ Run the playbook
 ```
 # ansible-playbook -i "dhcp46-111.lab.eng.blr.redhat.com, dhcp46-112.lab.eng.blr.redhat.com, dhcp46-113.lab.eng.blr.redhat.com" ocp_preq.yaml
 ```
-

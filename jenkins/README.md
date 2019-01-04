@@ -5,9 +5,9 @@ Goto jenkins directory
 # cd ocs/jenkins
 ```
 
-Create new-app from the template
+Create jenkins pod
 ```
-# oc new-app jenkins.yaml -p JENKINS_SERVICE_NAME=jenkins -p JNLP_SERVICE_NAME=jenkins -p STORAGE_CLASS=glusterfs-storage -p VOLUME_CAPACITY=10Gi -p MEMORY_LIMIT=1Gi
+# oc new-app jenkins.yaml -p JENKINS_SERVICE_NAME=jenkins -p JNLP_SERVICE_NAME=jenkins -p MEMORY_LIMIT=1Gi -p VOLUME_CAPACITY=10Gi -p STORAGE_CLASS=glusterfs-storage
 ```
 
 Create jjb configmap
