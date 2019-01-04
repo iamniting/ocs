@@ -6,7 +6,7 @@
 name=broker-001
 nameSpace=amq
 storageClass=glusterfs-sc
-volumeCapacity=200Gi
+volumeCapacity=10Gi
 
 R='\033[1;31m'
 G='\033[1;32m'
