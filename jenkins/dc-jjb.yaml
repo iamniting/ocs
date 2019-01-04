@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: deployement-config-jjb
+objects:
+- apiVersion: "v1"
+  kind: "DeploymentConfig"
+  metadata:
+    name: ${NAME}
+  spec:
+    template:
+      metadata:
+        labels:
+          name: "jjb"
+      spec:
+        containers:
+          - name: "jjb"
+            image: "docker.io/hongkailiu/jjb:2.0.6"
+            env:
+              - name: PYTHONHTTPSVERIFY
+                value: "0"
+              - name: XDG_CACHE_HOME
+                value: "/data"
+            volumeMounts:
+              - name: config-volume
+                mountPath: /etc/jenkins_jobs/
+              - name: "data-vol"
+                mountPath: "/data"
+        volumes:
+          - name: config-volume
+            configMap:
+              name: ${JJB_CM}
+          - name: "data-vol"
+            emptyDir: {}
+    triggers:
+      - type: "ConfigChange"
+    replicas: 1
+parameters:
+- description: Name of deployment config 
+  displayName: Deployment Config
+  name: NAME
+  required: true
+  value: jjb
+- description: name of the jjb config map
+  displayName: JJB Config Map
+  name: JJB_CM
+  required: true
+  value: jjb-configmap
