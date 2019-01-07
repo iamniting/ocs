@@ -5,7 +5,7 @@ project_name: test
 
 ### ocp_preq
 # password of system for ssh less authentication
-vm_password: redhat
+vm_password: password
 
 # username of subscription manager account
 username: example@redhat.com

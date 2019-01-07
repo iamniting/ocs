@@ -106,27 +106,27 @@ openshift_storage_glusterfs_heketi_image='registry.access.redhat.com/rhgs3/rhgs-
 openshift_storage_glusterfs_block_image='registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.11'
 
 
-openshift_master_cluster_hostname=dhcp46-111.lab.eng.blr.redhat.com
-openshift_master_cluster_public_hostname=dhcp46-111.lab.eng.blr.redhat.com
+openshift_master_cluster_hostname=node101.redhat.com
+openshift_master_cluster_public_hostname=node101.redhat.com
 
 [masters]
-dhcp46-111.lab.eng.blr.redhat.com
+node101.redhat.com
     
 [etcd]
-dhcp46-111.lab.eng.blr.redhat.com
+node101.redhat.com
    
 [nodes]
-dhcp46-111.lab.eng.blr.redhat.com openshift_node_group_name="node-config-master"
-dhcp46-112.lab.eng.blr.redhat.com openshift_node_group_name="node-config-infra"
-dhcp46-113.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-114.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
+node101.redhat.com openshift_node_group_name="node-config-master"
+node102.redhat.com openshift_node_group_name="node-config-infra"
+node103.redhat.com openshift_node_group_name="node-config-compute"
+node104.redhat.com openshift_node_group_name="node-config-compute"
 
 [glusterfs]
-dhcp46-115.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.115
-dhcp46-116.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.116
-dhcp46-117.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.117
+node105.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node105_ip
+node106.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node106_ip
+node107.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node107_ip
 
 [glusterfs_registry]
-dhcp46-118.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.118
-dhcp46-119.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.119
-dhcp46-120.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=10.70.46.120
+node108.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node108_ip
+node109.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node109_ip
+node110.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node110_ip

@@ -92,31 +92,31 @@ openshift_storage_glusterfs_heketi_image='registry.access.redhat.com/rhgs3/rhgs-
 openshift_storage_glusterfs_block_image='registry.access.redhat.com/rhgs3/rhgs-gluster-block-prov-rhel7:v3.10'
 
 
-openshift_master_cluster_hostname=dhcp46-111.lab.eng.blr.redhat.com
-openshift_master_cluster_public_hostname=dhcp46-111.lab.eng.blr.redhat.com
+openshift_master_cluster_hostname=node101.redhat.com
+openshift_master_cluster_public_hostname=node101.redhat.com
 
 [masters]
-dhcp46-111.lab.eng.blr.redhat.com
+node101.redhat.com
     
 [etcd]
-dhcp46-111.lab.eng.blr.redhat.com
+node101.redhat.com
    
 [nodes]
-dhcp46-111.lab.eng.blr.redhat.com openshift_node_group_name="node-config-master"
-dhcp46-112.lab.eng.blr.redhat.com openshift_node_group_name="node-config-infra"
-dhcp46-113.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-114.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-115.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-116.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-117.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
-dhcp46-118.lab.eng.blr.redhat.com openshift_node_group_name="node-config-compute"
+node101.redhat.com openshift_node_group_name="node-config-master"
+node102.redhat.com openshift_node_group_name="node-config-infra"
+node103.redhat.com openshift_node_group_name="node-config-compute"
+node104.redhat.com openshift_node_group_name="node-config-compute"
+node105.redhat.com openshift_node_group_name="node-config-compute"
+node106.redhat.com openshift_node_group_name="node-config-compute"
+node107.redhat.com openshift_node_group_name="node-config-compute"
+node108.redhat.com openshift_node_group_name="node-config-compute"
 
 [glusterfs]
-dhcp46-113.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
-dhcp46-114.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
-dhcp46-115.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
+node103.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
+node104.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
+node105.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
 
 [glusterfs_registry]
-dhcp46-116.lab.eng.blr.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
-dhcp46-117.lab.eng.blr.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
-dhcp46-118.lab.eng.blr.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
+node106.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
+node107.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
+node108.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
