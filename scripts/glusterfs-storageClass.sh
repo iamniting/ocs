@@ -1,5 +1,7 @@
-# it creates storageClass for glusterfs
-# eg. sh glusterfs-storageClass.sh
+#!/bin/bash
+
+### it creates storageClass for glusterfs
+### eg. sh glusterfs-storageClass.sh
 
 
 name=glusterfs-sc

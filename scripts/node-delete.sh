@@ -1,8 +1,10 @@
-# it delete node from heketi
-# it depend on device_delete.sh
-# it takes one argument
-# $1 is id of node
-# eg. node-delete.sh aae139bbfe94184438ac830bc2c3e552
+#!/bin/bash
+
+### it delete node from heketi
+### it depend on device_delete.sh
+### it takes one argument
+### $1 is id of node
+### eg. node-delete.sh aae139bbfe94184438ac830bc2c3e552
 
 
 id=$1

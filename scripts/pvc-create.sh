@@ -1,8 +1,10 @@
-# it creates a pvc
-# it takes two arguments
-# $1 is name of the pvc
-# $2 is size of pvc
-# eg. sh pvc-create.sh claim001 1
+#!/bin/bash
+
+### it creates a pvc
+### it takes two arguments
+### $1 is name of the pvc
+### $2 is size of pvc
+### eg. sh pvc-create.sh claim001 1
 
 
 name=$1

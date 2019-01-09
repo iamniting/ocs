@@ -1,8 +1,10 @@
-# it sets arbiter tags on all devices
-# it depends on device-info.sh
-# it take inputs at runtime
-# eg. d for disabled, r for required, s for supported
-# eg. sh device-settag.sh
+#!/bin/bash
+
+### it sets arbiter tags on all devices
+### it depends on device-info.sh
+### it take inputs at runtime
+### eg. d for disabled, r for required, s for supported
+### eg. sh device-settag.sh
 
 
 for deviceID in `sh device-info.sh | grep "Device Id" | cut -c 12-`

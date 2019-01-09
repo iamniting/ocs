@@ -1,5 +1,7 @@
-# it creates n pvcs and whenever any pvc got bound it will create a new pvc and make n requests in pending state
-# eg. sh pvc-create-n-requests.sh
+#!/bin/bash
+
+### it creates n pvcs and whenever any pvc got bound it will create a new pvc and make n requests in pending state
+### eg. sh pvc-create-n-requests.sh
 
 
 create_pvc()

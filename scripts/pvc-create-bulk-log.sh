@@ -1,5 +1,7 @@
-# it creates n pvc's with logs which contains time of requests
-# eg. sh pvc-create-bulk-log.sh
+#!/bin/bash
+
+### it creates n pvc's with logs which contains time of requests
+### eg. sh pvc-create-bulk-log.sh
 
 
 for i in {001..020}; do

@@ -1,5 +1,7 @@
-# it export the heketi variables
-# eg. sh export-heketi.sh
+#!/bin/bash
+
+### it export the heketi variables
+### eg. sh export-heketi.sh
 
 
 nameSpace=glusterfs

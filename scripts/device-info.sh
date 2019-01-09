@@ -1,7 +1,9 @@
-# it gives info of devices in heketi
-# we have to give id's of devices below
-# eg. heketi-cli device info ce7df48508dffc295dc3b468de6f38a8
-# eg. sh device-info.sh
+#!/bin/bash
+
+### it gives info of devices in heketi
+### we have to give id's of devices below
+### eg. heketi-cli device info ce7df48508dffc295dc3b468de6f38a8
+### eg. sh device-info.sh
 
 
 echo "----------------------------------------------------------------------------------------------------------------------------------------------------------------------"

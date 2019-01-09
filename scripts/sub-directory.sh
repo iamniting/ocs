@@ -1,5 +1,7 @@
-# it creates a directories and sub-directories & verify checksum
-# sh script.sh
+#!/bin/bash
+
+### it creates a directories and sub-directories & verify checksum
+### sh script.sh
 
 
 data="

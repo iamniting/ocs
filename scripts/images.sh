@@ -1,5 +1,7 @@
-# it pull all docker images
-# eg. sh images.sh
+#!/bin/bash
+
+### it pull all docker images
+### eg. sh images.sh
 
 
 docker pull rhel7/etcd:3.2.22
