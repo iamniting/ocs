@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This script is responsible for deploying pgsql pod
-# eg. sh deploy-pgsql.sh
+### This script is responsible for deploying pgsql pod
+### eg. sh deploy-pgsql.sh
 
 
 # variables
@@ -13,6 +13,7 @@ STORAGECLASS=glusterfs-sc
 VOLUMECAPACITY=10Gi
 MEMORYLIMIT=8192Mi
 
+### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/openshift3/jenkins-2-rhel7 jenkins:2 -n openshift; oc import-image jenkins:2 -n openshift &
 
 function deploy_jenkins_and_jjb() {
@@ -49,5 +50,7 @@ function delete_jenkins() {
     # oc delete ns $NAMESPACE
 }
 
+### create resources
 deploy_jenkins_and_jjb
+### delete resources
 # delete_jenkins
