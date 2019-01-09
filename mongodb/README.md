@@ -51,10 +51,10 @@ Go inside the ycsb pod
 
 Load database ($recordcount, $operationcount can be an integer & $mongodb_ip is a IP of mongodb pod)
 ```
-# ./bin/ycsb load mongodb -s -threads $threads -P "workloads/workloadf" -p mongodb.url=mongodb://redhat:redhat@$mongodb_ip:27017/ sampledb -p recordcount=$recordcount -p operationcount=$operationcount
+# ./bin/ycsb load mongodb -s -threads $threads -P "workloads/workloadf" -p mongodb.url=mongodb://redhat:redhat@$mongodb_ip:27017/sampledb -p recordcount=$recordcount -p operationcount=$operationcount
 ```
 
 Run transactions on database ($recordcount, $operationcount can be an integer & $mongodb_ip is a IP of mongodb pod)
 ```
-# ./bin/ycsb run mongodb -s -threads $threads -P "workloads/workloadf" -p mongodb.url=mongodb://redhat:redhat@$mongodb_ip:27017/  sampledb -p recordcount=$recordcount -p operationcount=$operationcount
+# ./bin/ycsb run mongodb -s -threads $threads -P "workloads/workloadf" -p mongodb.url=mongodb://redhat:redhat@$mongodb_ip:27017/sampledb -p recordcount=$recordcount -p operationcount=$operationcount
 ```
