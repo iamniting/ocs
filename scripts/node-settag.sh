@@ -1,8 +1,10 @@
-# it set arbiter tags on all nodes
-# it depends on node-info.sh
-# it take inputs at runtime
-# eg. d for disabled, r for required, s for supported
-# eg. sh node-settag.sh
+#!/bin/bash
+
+### it set arbiter tags on all nodes
+### it depends on node-info.sh
+### it take inputs at runtime
+### eg. d for disabled, r for required, s for supported
+### eg. sh node-settag.sh
 
 
 for nodeID in `sh node-info.sh | grep "Node Id" | cut -c 10-`

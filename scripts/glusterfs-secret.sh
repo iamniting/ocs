@@ -1,5 +1,7 @@
-# it creates secret for glusterfs
-# eg. sh glusterfs-secret.sh
+#!/bin/bash
+
+### it creates secret for glusterfs
+### eg. sh glusterfs-secret.sh
 
 
 name=heketi-secret-glusterfs

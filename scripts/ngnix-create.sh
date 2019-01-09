@@ -1,8 +1,10 @@
-# it creates a nginx app pod
-# it takes two arguments
-# $1 is name of the pod
-# $2 is name of pvc
-# eg. sh nginx-create.sh 001 claim001
+#!/bin/bash
+
+### it creates a nginx app pod
+### it takes two arguments
+### $1 is name of the pod
+### $2 is name of pvc
+### eg. sh nginx-create.sh 001 claim001
 
 
 name=$1

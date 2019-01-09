@@ -1,8 +1,10 @@
-# it makes a password less ssh
-# it takes two arguments
-# $1 is file name where all ip addresses or hostnames is stored
-# $2 is password of hosts
-# eg. sh sshcopy.sh ip.list redhat
+#!/bin/bash
+
+### it makes a password less ssh
+### it takes two arguments
+### $1 is file name where all ip addresses or hostnames is stored
+### $2 is password of hosts
+### eg. sh sshcopy.sh ip.list redhat
 
 
 file=$1

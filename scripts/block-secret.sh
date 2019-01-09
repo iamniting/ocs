@@ -1,5 +1,7 @@
-# it creates a secret for gluster-block
-# eg. sh block-secret.sh
+#!/bin/bash
+
+### it creates a secret for gluster-block
+### eg. sh block-secret.sh
 
 
 name=heketi-secret-block

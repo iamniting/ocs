@@ -1,5 +1,7 @@
-# it creates a storageClass for gluster-block
-# eg. sh block-storageClass.sh
+#!/bin/bash
+
+### it creates a storageClass for gluster-block
+### eg. sh block-storageClass.sh
 
 
 name=block-sc
