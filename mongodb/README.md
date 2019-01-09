@@ -14,14 +14,22 @@ nameSpace -> A new namespace which gets created where mongodb will be deployed.
 storageClass -> Name of the storageclass 
 ```
 
+<<<<<<< HEAD
 Run the following command to deploy mongodb and ycsb
+=======
+## Run the following command to deploy mongodb 
+>>>>>>> 67bebcf2a530710e1016f5fb329beb61ca7989a0
 
 ```
 # sh deploy-mongodb.sh
 # sh ycsb.sh ycsb
 ```
 
+<<<<<<< HEAD
 Run the following command to start workload on the mongodb pod (make sure to have right parameters for mongodbDC,ycsbDC & namespace)
+=======
+## Run the following command to start workload on the mongodb pod (make sure to have right parameters for mongodbDC,ycsbDC & namespace)
+>>>>>>> 67bebcf2a530710e1016f5fb329beb61ca7989a0
 
 ```
 # sh run-workload-mongodb.sh
