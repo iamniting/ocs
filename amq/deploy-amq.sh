@@ -1,8 +1,10 @@
-# This script is responsible for deploying amq pod
-# eg. sh deploy-amq.sh
+#!/bin/bash
+
+### This script is responsible for deploying amq pod
+### eg. sh deploy-amq.sh
 
 
-# variables
+### variables
 name=broker-001
 nameSpace=amq
 storageClass=glusterfs-sc

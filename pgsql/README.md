@@ -9,8 +9,8 @@ Goto pgsql directory
 
 Edit the following parameters in the deploy-pgsql.sh file to suite your cluster / requirements
 ```
-name -> This is the name of the pvc which gets created
-nameSpace -> A new namespace which gets created where mongodb will be deployed.
+name -> This is the name of the deployement config which gets created
+nameSpace -> A new namespace which gets created where pgsql will be deployed.
 storageClass -> Name of the storageclass 
 ```
 
