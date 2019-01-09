@@ -1,5 +1,7 @@
-# This script is responsible for setting volume options on gluster for postgresql block volume
-# eg. sh set-vol-ops-block-pgsql.sh
+#!/bin/bash
+
+### This script is responsible for setting volume options on gluster for postgresql block volume
+### eg. sh set-vol-ops-block-pgsql.sh
 
 
 glusterfsNameSpace=glusterfs
