@@ -1,8 +1,10 @@
-# This script is responsible for deploying pgsql pod
-# eg. sh deploy-pgsql.sh
+#!/bin/bash
+
+### This script is responsible for deploying pgsql pod
+### eg. sh deploy-pgsql.sh
 
 
-# variables
+### variables
 name=postgresql-001
 nameSpace=pgsql
 storageClass=glusterfs-sc
@@ -16,6 +18,7 @@ N='\033[0m'
 echo -e "\n${G}Creating new project $nameSpace${N}"
 oc create ns $nameSpace
 
+### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/rhscl/postgresql-96-rhel7 postgresql:9.6 -n openshift; oc import-image postgresql:9.6 -n openshift &
 
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"

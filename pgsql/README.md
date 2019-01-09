@@ -5,6 +5,27 @@ Goto pgsql directory
 # cd ocs/pgsql
 ```
 
+## Configuring and running workload using scripts
+
+Edit the following parameters in the deploy-pgsql.sh file to suite your cluster / requirements
+```
+name -> This is the name of the pvc which gets created
+nameSpace -> A new namespace which gets created where mongodb will be deployed.
+storageClass -> Name of the storageclass 
+```
+
+Run the following command to deploy pgsql
+```
+# sh deploy-pgsql.sh
+```
+
+Run the following command to start workload on the pgsql pod (make sure to have right parameters for pgsqlDC, & namespace)
+```
+# sh run-workload-pgsql.sh
+```
+
+## Below steps explains the manual procedure about deploying and running workloads on pgsql pods
+
 Create new-app from the template
 ```
 # oc new-app pgsql.yaml -p DATABASE_SERVICE_NAME=postgresql -p MEMORY_LIMIT=1Gi -p VOLUME_CAPACITY=10Gi -p STORAGE_CLASS=glusterfs-storage

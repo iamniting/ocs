@@ -1,5 +1,7 @@
-# This script is responsible for setting volume options on gluster for postgresql file volume
-# eg. sh set-vol-ops-file-pgsql.sh
+#!/bin/bash
+
+### This script is responsible for setting volume options on gluster for postgresql file volume
+### eg. sh set-vol-ops-file-pgsql.sh
 
 
 pvcName=postgresql-001
