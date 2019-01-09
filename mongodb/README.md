@@ -4,7 +4,27 @@ Goto mongodb directory
 ```
 # cd ocs/mongodb
 ```
-                                                                                
+## Configuring and running workload using scripts
+
+Edit the following params in the deploy-mongodb.sh file to suite your cluster / requirements
+```
+
+nameSpace -> A new namespace which gets created where mongodb will be deployed.
+name -> this is the name of the pvc which gets creates
+storageClass -> name of the storageclass 
+```
+
+## Run the following command to deploy mongodb 
+```
+# sh deploy-mongodb.sh
+```
+
+## Run the following command to start workload on the mongodb pod (make sure to have right parameters for mongodbDC,ycsbDC & namespace)
+```
+# sh run-workload-mongodb.sh
+```
+
+## Steps below explains the manual procedure about deploying and running workloads on mongodb pods.                                                                                
 Create new-app from the template                                                
 ```                                                                             
 # oc new-app mongodb.yaml -p DATABASE_SERVICE_NAME=mongodb -p MEMORY_LIMIT=1Gi -p VOLUME_CAPACITY=10Gi -p STORAGE_CLASS=glusterfs-storage
