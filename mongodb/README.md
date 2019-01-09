@@ -8,9 +8,8 @@ Goto mongodb directory
 
 Edit the following params in the deploy-mongodb.sh file to suite your cluster / requirements
 ```
-
+name -> this is the name of the pvc which gets created
 nameSpace -> A new namespace which gets created where mongodb will be deployed.
-name -> this is the name of the pvc which gets creates
 storageClass -> name of the storageclass 
 ```
 
