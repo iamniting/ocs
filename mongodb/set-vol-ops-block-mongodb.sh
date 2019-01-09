@@ -1,5 +1,6 @@
-# This script is responsible for setting volume options on gluster for mongodb block volume
-# eg. sh set-vol-ops-block-mongodb.sh
+#!/bin/bash
+### This script is responsible for setting volume options on gluster for mongodb block volume
+### eg. sh set-vol-ops-block-mongodb.sh
 
 
 glusterfsNameSpace=glusterfs
