@@ -25,7 +25,7 @@ Run the following command to start workload on the mongodb pod (make sure to hav
 # sh run-workload-mongodb.sh
 ```
 
-## Steps below explains the manual procedure about deploying and running workloads on mongodb pods.                                                                                
+## Below steps explains the manual procedure about deploying and running workloads on mongodb pods
 
 Create new-app from the template                                                
 ```                                                                             
@@ -49,7 +49,7 @@ Verify that pod is up and running
 # oc get pods
 ```
 
-## Run test on mongodb pod
+## Run workload on mongodb pod
 
 Get the IP of mongodb pod
 ```
