@@ -1,8 +1,9 @@
-# This script is responsible for deploying mongodb pod
-# eg. sh deploy-mongodb.sh
+#!/bin/bash
+### This script is responsible for deploying mongodb pod
+### eg. sh deploy-mongodb.sh
 
 
-# variables
+### variables
 name=mongodb-001
 nameSpace=mongodb
 storageClass=glusterfs-sc
@@ -16,6 +17,7 @@ N='\033[0m'
 echo -e "\n${G}Creating new project $nameSpace${N}"
 oc create ns $nameSpace
 
+### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/rhscl/mongodb-32-rhel7 mongodb:3.2 -n openshift; oc import-image mongodb:3.2 -n openshift &
 
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
