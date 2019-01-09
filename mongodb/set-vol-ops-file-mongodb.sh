@@ -1,5 +1,6 @@
-# This script is responsible for setting volume options on gluster for mongodb file volume
-# eg. sh set-vol-ops-file-mongodb.sh
+#!/bin/bash
+### This script is responsible for setting volume options on gluster for mongodb file volume
+### eg. sh set-vol-ops-file-mongodb.sh
 
 
 pvcName=mongodb-001

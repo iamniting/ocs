@@ -1,6 +1,7 @@
-# This script is used for creating DC for YCSB
-# $1 is name of the DC
-# eg. sh ycsb.sh ycsb
+#!/bin/bash
+### This script is used for creating DC for YCSB
+### $1 is name of the DC
+### eg. sh ycsb.sh ycsb
 
 
 name=$1
