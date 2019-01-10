@@ -34,14 +34,16 @@
 
   - name: enabling the repos
     rhsm_repository:
-      name: "{{ repos }}"
+      name: "{{ item }}"
       state: enabled
+    with_items: "{{ repos }}"
     tags: subscription
 
   - name: install the packages
     yum:
-      name: "{{ packages }}"
+      name: "{{ item }}"
       state: present
+    with_items: "{{ packages }}"
     tags: yum
 
   - name: update all packages
