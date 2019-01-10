@@ -8,8 +8,8 @@
     connection: local
     command: sshpass -p "{{ vm_password }}" ssh-copy-id -o "StrictHostKeyChecking=no" -f "root@{{ item }}"
     with_items: "{{ hostvars[hostvars.keys()[0]]['groups']['all'] }}"
-    tags: ssh
     register: out 
+    tags: ssh
 
   - debug: var=out.stdout_lines
     tags: ssh
@@ -61,8 +61,8 @@
 
   - name: configuring docker
     command: docker-storage-setup
-    tags: docker
     register: out
+    tags: docker
 
   - debug: var=out.stdout_lines
     tags: docker
@@ -73,8 +73,8 @@
       - systemctl enable docker
       - systemctl start docker
       - systemctl is-active docker
-    tags: docker
     register: out
+    tags: docker
 
   - debug: var=out.stdout_lines
     tags: docker
@@ -83,8 +83,8 @@
     command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
     args:
       creates: /root/.ssh/id_rsa
-    tags: ssh
     register: out
+    tags: ssh
 
   - debug: var=out.stdout_lines
     tags: ssh
@@ -92,8 +92,8 @@
   - name: making ssh less
     command: sshpass -p "{{ vm_password }}" ssh-copy-id -o "StrictHostKeyChecking=no" -f "root@{{ item }}"
     with_items: "{{ play_hosts }}"
-    tags: ssh
     register: out
+    tags: ssh
 
   - debug: var=out.stdout_lines
     tags: ssh
