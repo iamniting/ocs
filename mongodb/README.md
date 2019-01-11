@@ -14,6 +14,10 @@ nameSpace -> A new namespace which gets created where mongodb will be deployed.
 storageClass -> Name of the storageclass 
 ```
 
+If you are deploying it for the first time then please make sure to uncomment the line below from the deploy-mongodb.sh file
+```
+oc tag registry.access.redhat.com/rhscl/mongodb-32-rhel7 mongodb:3.2 -n openshift; oc import-image mongodb:3.2 -n openshift &
+```
 Run the following command to deploy mongodb and ycsb
 ```
 # sh deploy-mongodb.sh
