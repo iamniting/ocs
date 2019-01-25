@@ -51,7 +51,7 @@ spec:
         args:
         - '-ec'
         - 'while true; do
-               (mount | grep /mnt) && (head -c 1000 < /dev/urandom > /mnt/random-data.log) || exit 1;
+               (mount | grep /mnt) && (head -c 10485760 < /dev/urandom > /mnt/random-data.log) || exit 1;
                sleep 20 ;
            done'
         livenessProbe:
