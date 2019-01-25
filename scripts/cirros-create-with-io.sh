@@ -4,7 +4,7 @@
 ### it takes two argument
 ### $1 is name of the dc and pod
 ### $2 is name of the pvc
-### eg. sh cirros-create.sh 001 claim001
+### eg. sh cirros-create-with-io.sh 001 claim001
 ### we can also change the size of file in line no. 40, It takes bytes eg. "head -c 2000 < /dev/urandom > /mnt/random-data.log"
 
 
