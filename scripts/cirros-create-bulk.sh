@@ -7,6 +7,6 @@
 
 for i in {001..020};
 do
-    sh cirros-create.sh $i claim$i;
+    sh cirros-create-with-io.sh $i claim$i;
     sleep 5
 done
