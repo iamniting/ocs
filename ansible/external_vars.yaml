@@ -34,6 +34,7 @@ packages:
   - tree
   - wget
   - git
+  - sshpass
   - net-tools
   - bind-utils
   - iptables-services
