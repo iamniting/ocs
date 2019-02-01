@@ -100,9 +100,6 @@ openshift_storage_glusterfs_heketi_admin_key='adminkey'
 openshift_storage_glusterfs_heketi_user_key='heketiuserkey'
 
 
-openshift_storage_glusterfs_image='registry.access.redhat.com/rhgs3/rhgs-server-rhel7'
-openshift_storage_glusterfs_version=v3.9
-
 openshift_storage_glusterfs_heketi_image='registry.access.redhat.com/rhgs3/rhgs-volmanager-rhel7'
 openshift_storage_glusterfs_heketi_version=v3.9
 
