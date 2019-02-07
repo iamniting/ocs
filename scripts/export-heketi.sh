@@ -5,10 +5,10 @@
 
 
 nameSpace=glusterfs
-restUrl=`oc get service heketi-storage -n $nameSpace --no-headers\
-    -o=custom-columns=:.spec.clusterIP`
+restUrl=`oc get route heketi-storage -n $nameSpace --no-headers\
+    -o=custom-columns=:.spec.host`
 
-export HEKETI_CLI_SERVER=http://${restUrl}:8080
+export HEKETI_CLI_SERVER=http://${restUrl}
 export HEKETI_CLI_USER=admin
 export HEKETI_CLI_KEY=adminkey
 
