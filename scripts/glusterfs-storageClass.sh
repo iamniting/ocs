@@ -7,8 +7,8 @@
 name=glusterfs-sc
 secretName=heketi-secret-glusterfs
 secretNameSpace=glusterfs
-restUrl=`oc get service heketi-storage -n $secretNameSpace --no-headers\
-    -o=custom-columns=:.spec.clusterIP`
+restUrl=`oc get route heketi-storage -n $secretNameSpace --no-headers\
+    -o=custom-columns=:.spec.host`
 
 echo "apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -17,7 +17,7 @@ metadata:
 reclaimPolicy: Delete
 provisioner: kubernetes.io/glusterfs
 parameters:
-  resturl: http://$restUrl:8080
+  resturl: http://$restUrl
   restuser: admin
   secretName: $secretName
   secretNamespace: $secretNameSpace
