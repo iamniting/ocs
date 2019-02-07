@@ -57,6 +57,7 @@ openshift_metrics_cassandra_pvc_storage_class_name="glusterfs-registry-block"
 
 
 # glusterfs
+openshift_storage_glusterfs_timeout=900
 openshift_storage_glusterfs_namespace=glusterfs
 openshift_storage_glusterfs_storageclass=true
 openshift_storage_glusterfs_storageclass_default=false
