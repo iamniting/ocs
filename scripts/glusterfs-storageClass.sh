@@ -21,6 +21,6 @@ parameters:
   restuser: admin
   secretName: $secretName
   secretNamespace: $secretNameSpace
-  volumeoptions: user.heketi.arbiter true,user.heketi.average-file-size 64
-  volumenameprefix: vol
+  #volumeoptions: user.heketi.arbiter true,user.heketi.average-file-size 64
+  volumenameprefix: ocs
 allowVolumeExpansion: true" | oc create -f -
