@@ -9,7 +9,7 @@
 
 name=$1
 storageSize=$2
-storageClass=glusterfs-sc
+storageClass=glusterfs-file
 
 echo "kind: PersistentVolumeClaim
 apiVersion: v1

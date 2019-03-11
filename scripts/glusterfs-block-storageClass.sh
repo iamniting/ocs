@@ -1,11 +1,11 @@
 #!/bin/bash
 
 ### it creates a storageClass for gluster-block
-### eg. sh gluster-block-storageClass.sh
+### eg. sh glusterfs-block-storageClass.sh
 
 
-name=gluster-block-sc
-secretName=heketi-storage-secret-gluster-block
+name=glusterfs-block
+secretName=heketi-storage-secret-glusterfs-block
 secretNameSpace=glusterfs
 heketiRoute=heketi-storage
 restUrl=`oc get route $heketiRoute -n $secretNameSpace --no-headers\
