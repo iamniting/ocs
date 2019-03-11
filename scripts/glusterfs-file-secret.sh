@@ -1,10 +1,10 @@
 #!/bin/bash
 
-### it creates a secret for gluster-block
-### eg. sh gluster-block-secret.sh
+### it creates secret for glusterfs
+### eg. sh glusterfs-file-secret.sh
 
 
-name=heketi-storage-secret-gluster-block
+name=heketi-storage-secret-glusterfs-file
 nameSpace=glusterfs
 adminkey='adminkey'
 
@@ -17,4 +17,4 @@ metadata:
   namespace: $nameSpace
 data:
   key: $key
-type: gluster.org/glusterblock" | oc create -f -
+type: kubernetes.io/glusterfs" | oc create -f -
