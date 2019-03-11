@@ -4,10 +4,11 @@
 ### eg. sh glusterfs-secret.sh
 
 
-name=heketi-secret-glusterfs
+name=heketi-storage-secret-glusterfs
 nameSpace=glusterfs
-# echo -n 'adminkey' | base64
-key='YWRtaW5rZXk='
+adminkey='adminkey'
+
+key=`echo -n $adminkey | base64`
 
 echo "apiVersion: v1
 kind: Secret

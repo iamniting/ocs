@@ -1,13 +1,14 @@
 #!/bin/bash
 
 ### it creates a secret for gluster-block
-### eg. sh block-secret.sh
+### eg. sh gluster-block-secret.sh
 
 
-name=heketi-secret-block
+name=heketi-storage-secret-gluster-block
 nameSpace=glusterfs
-# echo -n 'adminkey' | base64
-key='YWRtaW5rZXk='
+adminkey='adminkey'
+
+key=`echo -n $adminkey | base64`
 
 echo "apiVersion: v1
 kind: Secret
