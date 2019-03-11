@@ -1,13 +1,14 @@
 #!/bin/bash
 
 ### it creates a storageClass for gluster-block
-### eg. sh block-storageClass.sh
+### eg. sh gluster-block-storageClass.sh
 
 
-name=block-sc
-secretName=heketi-secret-block
+name=gluster-block-sc
+secretName=heketi-storage-secret-gluster-block
 secretNameSpace=glusterfs
-restUrl=`oc get route heketi-storage -n $secretNameSpace --no-headers\
+heketiRoute=heketi-storage
+restUrl=`oc get route $heketiRoute -n $secretNameSpace --no-headers\
     -o=custom-columns=:.spec.host`
 
 echo "apiVersion: storage.k8s.io/v1

@@ -5,9 +5,10 @@
 
 
 name=glusterfs-sc
-secretName=heketi-secret-glusterfs
+secretName=heketi-storage-secret-glusterfs
 secretNameSpace=glusterfs
-restUrl=`oc get route heketi-storage -n $secretNameSpace --no-headers\
+heketiRoute=heketi-storage
+restUrl=`oc get route $heketiRoute -n $secretNameSpace --no-headers\
     -o=custom-columns=:.spec.host`
 
 echo "apiVersion: storage.k8s.io/v1

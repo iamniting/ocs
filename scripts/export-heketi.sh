@@ -5,7 +5,8 @@
 
 
 nameSpace=glusterfs
-restUrl=`oc get route heketi-storage -n $nameSpace --no-headers\
+heketiRoute=heketi-storage
+restUrl=`oc get route $heketiRoute -n $nameSpace --no-headers\
     -o=custom-columns=:.spec.host`
 
 export HEKETI_CLI_SERVER=http://${restUrl}
