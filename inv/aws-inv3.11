@@ -1,0 +1,137 @@
+[OSEv3:children]
+masters
+etcd
+nodes
+glusterfs
+glusterfs_registry
+
+[OSEv3:vars]
+debug_level=2
+ansible_user=ec2-user
+ansible_become=yes
+openshift_deployment_type=openshift-enterprise
+openshift_release=v3.11
+oreg_url=registry.access.redhat.com/openshift3/ose-${component}:v3.11
+openshift_examples_modify_imagestreams=true
+openshift_disable_check=memory_availability,disk_availability,docker_image_availability
+openshift_master_api_port=443
+openshift_master_console_port=443
+openshift_portal_net=172.30.0.0/16
+os_sdn_network_plugin_name='redhat/openshift-ovs-networkpolicy'
+openshift_master_cluster_method=native
+container_runtime_docker_storage_setup_device=/dev/xvdb
+openshift_node_local_quota_per_fsgroup=512Mi
+osm_use_cockpit=true
+openshift_hostname_check=false
+
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_file=/home/ec2-user/users.htpasswd
+
+# update below values using file '~/.ssh/config-clusterId.DomainName-urls' e.g: '~/.ssh/config-refarch311.nigoyal.com-urls' 
+openshift_master_default_subdomain=apps.refarch311.nigoyal.com
+openshift_master_cluster_hostname=master.refarch311.nigoyal.com
+openshift_master_cluster_public_hostname=master.refarch311.nigoyal.com
+
+# update below values using file '~/.ssh/config-clusterId.DomainName-cpk' e.g: '~/.ssh/config-refarch311.nigoyal.com-cpk'
+openshift_cloudprovider_kind=aws
+openshift_clusterid=refarch311
+openshift_cloudprovider_aws_access_key=<aws_access_key>
+openshift_cloudprovider_aws_secret_key=<aws_secret_key>
+
+openshift_enable_service_catalog=true
+template_service_broker_install=true
+
+
+# logging
+openshift_logging_install_logging=true
+openshift_logging_es_pvc_dynamic=true
+openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_logging_curator_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_logging_es_pvc_size=20Gi
+openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
+
+
+# metrics
+openshift_metrics_install_metrics=true
+openshift_metrics_storage_kind=dynamic
+openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_storage_volume_size=20Gi
+openshift_metrics_cassandra_pvc_storage_class_name="glusterfs-registry-block"
+
+
+# glusterfs
+openshift_storage_glusterfs_timeout=900
+openshift_storage_glusterfs_namespace=glusterfs
+openshift_storage_glusterfs_storageclass=true
+openshift_storage_glusterfs_storageclass_default=false
+openshift_storage_glusterfs_block_storageclass=true
+openshift_storage_glusterfs_block_storageclass_default=false
+openshift_storage_glusterfs_block_deploy=true
+openshift_storage_glusterfs_block_host_vol_create=true
+openshift_storage_glusterfs_block_host_vol_size=100
+
+
+# glusterfs_registry
+openshift_storage_glusterfs_registry_namespace=glusterfs-registry
+openshift_storage_glusterfs_registry_storageclass=true
+openshift_storage_glusterfs_registry_storageclass_default=false
+openshift_storage_glusterfs_registry_block_storageclass=true
+openshift_storage_glusterfs_registry_block_storageclass_default=false
+openshift_storage_glusterfs_registry_block_deploy=true
+openshift_storage_glusterfs_registry_block_host_vol_create=true
+openshift_storage_glusterfs_registry_block_host_vol_size=100
+
+
+# glusterfs_registry_storage
+openshift_hosted_registry_storage_kind=glusterfs
+openshift_hosted_registry_storage_volume_size=20Gi       
+openshift_hosted_registry_selector="node-role.kubernetes.io/infra=true"
+
+
+openshift_storage_glusterfs_heketi_admin_key='adminkey'
+openshift_storage_glusterfs_heketi_user_key='heketiuserkey'
+
+
+openshift_storage_glusterfs_image='rhgs3/rhgs-server-rhel7:v3.11'
+
+openshift_storage_glusterfs_heketi_image='rhgs3/rhgs-volmanager-rhel7:v3.11'
+
+openshift_storage_glusterfs_block_image='rhgs3/rhgs-gluster-block-prov-rhel7:v3.11'
+
+
+# we can update below hostnames from '~/.ssh/config-clusterId.DomainName-hosts' e.g: 'cat ~/.ssh/config-refarch311.nigoyal.com-hosts'
+[masters]
+node101 openshift_node_group_name="node-config-master"
+
+[etcd]
+
+[etcd:children]
+masters
+
+# we can update below hostnames from '~/.ssh/config-clusterId.DomainName-hostscns' e.g: 'cat ~/.ssh/config-refarch311.nigoyal.com-hostscns'
+[nodes]
+node102 openshift_node_group_name="node-config-infra"
+node103 openshift_node_group_name="node-config-infra"
+node104 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+node105 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+node106 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+node107 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+node108 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+node109 openshift_schedulable=True openshift_node_group_name="node-config-compute"
+
+[nodes:children]
+masters
+
+# we can update below hostnames from '~/.ssh/config-clusterId.DomainName-hostsgfs' e.g: 'cat ~/.ssh/config-refarch311.nigoyal.com-hostsgfs' 
+[glusterfs]
+node104 glusterfs_zone=1 glusterfs_devices='[ "/dev/xvdf" ]'
+node105 glusterfs_zone=2 glusterfs_devices='[ "/dev/xvdf" ]'
+node106 glusterfs_zone=3 glusterfs_devices='[ "/dev/xvdf" ]'
+
+[glusterfs_registry]
+node107 glusterfs_zone=1 glusterfs_devices='[ "/dev/xvdf" ]'
+node108 glusterfs_zone=2 glusterfs_devices='[ "/dev/xvdf" ]'
+node109 glusterfs_zone=3 glusterfs_devices='[ "/dev/xvdf" ]'
