@@ -9,12 +9,17 @@ JENKINS_NAME=jenkins-001
 JJB_CM_NAME=jjb-configmap-001
 JJB_DC_NAME=jjb-001
 NAMESPACE=jenkins
-STORAGECLASS=glusterfs-sc
+STORAGECLASS=glusterfs-file
 VOLUMECAPACITY=10Gi
 MEMORYLIMIT=8192Mi
 
 ### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/openshift3/jenkins-2-rhel7 jenkins:2 -n openshift; oc import-image jenkins:2 -n openshift &
+
+version=`oc version | awk '/openshift/ {print $2}' | cut -d . -f 1,2`
+if [ "$version" = "v3.11" ]; then
+    oc tag registry.access.redhat.com/openshift3/jenkins-2-rhel7 jenkins:2 -n openshift; oc import-image jenkins:2 -n openshift &
+fi
 
 function deploy_jenkins_and_jjb() {
     ### create namespace

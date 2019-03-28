@@ -7,7 +7,7 @@
 ### variables
 name=postgresql-001
 nameSpace=pgsql
-storageClass=glusterfs-sc
+storageClass=glusterfs-file
 volumeCapacity=10Gi
 memoryLimit=8192Mi
 
@@ -20,6 +20,11 @@ oc create ns $nameSpace
 
 ### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/rhscl/postgresql-96-rhel7 postgresql:9.6 -n openshift; oc import-image postgresql:9.6 -n openshift &
+
+version=`oc version | awk '/openshift/ {print $2}' | cut -d . -f 1,2`
+if [ "$version" = "v3.11" ]; then
+    oc tag registry.access.redhat.com/rhscl/postgresql-96-rhel7 postgresql:9.6 -n openshift; oc import-image postgresql:9.6 -n openshift &
+fi
 
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
 oc new-app pgsql.yaml -n $nameSpace -p DATABASE_SERVICE_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity -p MEMORY_LIMIT=$memoryLimit
