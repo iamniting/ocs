@@ -4,20 +4,36 @@ project_name: test
 
 
 ### ocp_preq
-# password of system for ssh less authentication
+## boolean variable for make ssh less connection
+sshLess: True
+
+## boolean variable for subscription-manager
+subscription: True
+
+## boolean variable for yum install and yum update
+yumInstall: True
+yumUpdate: True
+
+## boolean variable for docker config
+dockerConfig: True
+
+## boolean variable for reboot node after yum update
+reboot: True
+
+## password of system for ssh less authentication
 vm_password: password
 
-# username of subscription manager account
-username: example@redhat.com
+## username of subscription manager account
+username: user@redhat.com
 
-# password of subscription manager account
+## password of subscription manager account
 password: password
 
-# pool id for virtual machine is 8a85f98960dbf6510160df23eb447470
-# pool id for physical system is 8a85f98960dbf6510160df23e3367451
+## pool id for virtual machine is 8a85f98960dbf6510160df23eb447470
+## pool id for physical system is 8a85f98960dbf6510160df23e3367451
 pool_id: 8a85f98960dbf6510160df23eb447470
 
-# repos to enable
+## repos to enable
 repos:
   - rhel-7-server-rpms
   - rhel-7-server-extras-rpms
@@ -25,9 +41,10 @@ repos:
   - rhel-7-server-ansible-2.6-rpms
   - rhel-7-server-ose-3.11-rpms
   - rhel-7-fast-datapath-rpms
+#  - rh-gluster-3-for-rhel-7-server-rpms
   - rh-gluster-3-client-for-rhel-7-server-rpms
 
-# packages to install
+## packages to install
 packages:
   - vim
   - screen
@@ -45,7 +62,9 @@ packages:
   - psacct
   - openshift-ansible
   - docker-1.13.1
+#  - glusterfs
+#  - gluster-block
 
-# docker configuration
+## docker configuration
 docker_device: /dev/sdc
 docker_vg: docker-vg
