@@ -6,7 +6,7 @@
 ### variables
 name=mongodb-001
 nameSpace=mongodb
-storageClass=glusterfs-sc
+storageClass=glusterfs-file
 volumeCapacity=10Gi
 memoryLimit=8192Mi
 
@@ -19,6 +19,11 @@ oc create ns $nameSpace
 
 ### change the registry for redhat.io to registry.access.redhat.com. it is necessary for the first time only, uncomment below line for the first time
 # oc tag registry.access.redhat.com/rhscl/mongodb-32-rhel7 mongodb:3.2 -n openshift; oc import-image mongodb:3.2 -n openshift &
+
+version=`oc version | awk '/openshift/ {print $2}' | cut -d . -f 1,2`
+if [ "$version" = "v3.11" ]; then
+    oc tag registry.access.redhat.com/rhscl/mongodb-32-rhel7 mongodb:3.2 -n openshift; oc import-image mongodb:3.2 -n openshift &
+fi
 
 echo -e "\n${G}Creating a $name Secret, SVC, PVC, DC${N}"
 oc new-app mongodb.yaml -n $nameSpace -p DATABASE_SERVICE_NAME=$name -p STORAGE_CLASS=$storageClass -p VOLUME_CAPACITY=$volumeCapacity -p MEMORY_LIMIT=$memoryLimit

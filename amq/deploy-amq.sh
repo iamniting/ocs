@@ -7,7 +7,7 @@
 ### variables
 name=broker-001
 nameSpace=amq
-storageClass=glusterfs-sc
+storageClass=glusterfs-file
 volumeCapacity=10Gi
 
 R='\033[1;31m'
