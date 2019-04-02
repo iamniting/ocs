@@ -10,7 +10,12 @@
 name=$1
 storageSize=$2
 storageClass=glusterfs-file
-
+: '
+file volume access mode should be "ReadWriteMany"
+block volume access mode should be "ReadWriteOnce"
+change the "acessModes" according to the volume type
+'
+accessModes=ReadWriteMany
 
 echo "kind: PersistentVolumeClaim
 apiVersion: v1
@@ -20,7 +25,7 @@ metadata:
     volume.beta.kubernetes.io/storage-class: $storageClass
 spec:
   accessModes:
-   - ReadWriteOnce
+   - $accessModes
   resources:
     requests:
       storage: $storageSize""Gi" | oc create -f -
