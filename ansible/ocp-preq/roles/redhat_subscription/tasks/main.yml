@@ -4,17 +4,17 @@
     username: "{{ username }}"
     password: "{{ password }}"
     pool_ids: "{{ pool_ids }}"
-  tags: subscription
+  tags: always
 
 - name: 'disabling all repos'
   rhsm_repository:
     name: '*'
     state: disabled
-  tags: subscription
+  tags: always
 
 - name: 'enabling the repos'
   rhsm_repository:
     name: "{{ item }}"
     state: enabled
   with_items: "{{ repos }}"
-  tags: subscription
+  tags: always

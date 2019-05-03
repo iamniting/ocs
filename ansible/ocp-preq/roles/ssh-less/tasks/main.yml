@@ -3,13 +3,16 @@
   args:
     creates: /root/.ssh/id_rsa
   register: out
-  tags: ssh
+  vars:
+    _key_gen: "{{ key_gen | default(True) }}"    
+  when: "_key_gen"
+  tags: always
 
 - debug: var=out.stdout_lines
-  tags: ssh
+  tags: always
 
 - name: 'making ssh less'
   command: sshpass -p "{{ password }}" ssh-copy-id -o \
       "StrictHostKeyChecking=no" -f "root@{{ item }}"
   with_items: "{{ hosts }}"
-  tags: ssh
+  tags: always

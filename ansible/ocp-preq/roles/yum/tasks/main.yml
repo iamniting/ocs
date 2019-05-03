@@ -4,11 +4,11 @@
     state: latest
   with_items: "{{ packages }}"
   when: "yumInstall"
-  tags: yum
+  tags: always
 
 - name: 'update all packages'
   yum:
     name: '*'
     state: latest
   when: "yumUpdate"
-  tags: yum
+  tags: always

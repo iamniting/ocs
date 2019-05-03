@@ -4,15 +4,15 @@
       DEVS={{ device }}
       VG={{ vg }}
     dest: /etc/sysconfig/docker-storage-setup
-  tags: docker
+  tags: always
 
 - name: 'configuring docker'
   command: docker-storage-setup
   register: out
-  tags: docker
+  tags: always
 
 - debug: var=out.stdout_lines
-  tags: docker
+  tags: always
 
 - name: 'enable docker service'
   command: "{{ item }}"
@@ -20,4 +20,4 @@
     - systemctl enable docker
     - systemctl start docker
     - systemctl is-active docker
-  tags: docker
+  tags: always

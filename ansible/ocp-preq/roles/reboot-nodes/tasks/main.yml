@@ -3,7 +3,7 @@
   async: 0
   poll: 0
   ignore_errors: true
-  tags: reboot
+  tags: always
 
 - name: wait for the reboot to complete
   wait_for_connection:
@@ -11,4 +11,4 @@
     sleep: 5
     delay: 5
     timeout: 300
-  tags: reboot
+  tags: always
