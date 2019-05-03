@@ -1,0 +1,20 @@
+- name: 'registering system with subscription-manager'
+  redhat_subscription:
+    state: present
+    username: "{{ username }}"
+    password: "{{ password }}"
+    pool_ids: "{{ pool_ids }}"
+  tags: subscription
+
+- name: 'disabling all repos'
+  rhsm_repository:
+    name: '*'
+    state: disabled
+  tags: subscription
+
+- name: 'enabling the repos'
+  rhsm_repository:
+    name: "{{ item }}"
+    state: enabled
+  with_items: "{{ repos }}"
+  tags: subscription

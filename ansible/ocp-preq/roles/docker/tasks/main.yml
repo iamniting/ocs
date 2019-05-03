@@ -1,0 +1,23 @@
+- name: 'copy docker content in /etc/sysconfig/docker-storage-setup'
+  copy:
+    content: |
+      DEVS={{ device }}
+      VG={{ vg }}
+    dest: /etc/sysconfig/docker-storage-setup
+  tags: docker
+
+- name: 'configuring docker'
+  command: docker-storage-setup
+  register: out
+  tags: docker
+
+- debug: var=out.stdout_lines
+  tags: docker
+
+- name: 'enable docker service'
+  command: "{{ item }}"
+  with_items:
+    - systemctl enable docker
+    - systemctl start docker
+    - systemctl is-active docker
+  tags: docker

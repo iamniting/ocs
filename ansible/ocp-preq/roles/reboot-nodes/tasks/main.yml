@@ -1,0 +1,14 @@
+- name: reboot the nodes
+  command: /sbin/shutdown -r +1
+  async: 0
+  poll: 0
+  ignore_errors: true
+  tags: reboot
+
+- name: wait for the reboot to complete
+  wait_for_connection:
+    connect_timeout: 20
+    sleep: 5
+    delay: 5
+    timeout: 300
+  tags: reboot

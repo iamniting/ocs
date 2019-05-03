@@ -1,0 +1,9 @@
+[nodes]
+node1 ansible_user=root
+node2 ansible_user=root
+node3 ansible_user=root
+
+[nodes:vars]
+subscription_repos='["rhel-7-server-rpms", "rhel-7-server-extras-rpms"]'
+
+yum_packages='["vim", "screen"]'

@@ -1,0 +1,14 @@
+- name: 'install the packages'
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages }}"
+  when: "yumInstall"
+  tags: yum
+
+- name: 'update all packages'
+  yum:
+    name: '*'
+    state: latest
+  when: "yumUpdate"
+  tags: yum
