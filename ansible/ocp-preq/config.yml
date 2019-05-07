@@ -1,16 +1,16 @@
 ---
 - hosts: localhost
   tasks:
-  - name: making a ssh less connection from localhost
+  - name: making a password less ssh connection from localhost
     include_role:
-      name: ssh-less
+      name: password-less-ssh
     vars:
       password: "{{ vm_password }}"
       hosts: "{{ groups['all'] }}"
       key_gen: False
     tags: always
 
-- hosts: nodes
+- hosts: all
   tasks:
   - name: subscription manager
     include_role:
@@ -20,36 +20,33 @@
       password: "{{ subscription_password }}"
       pool_ids: "{{ subscription_pool_ids }}"
       repos: "{{ subscription_repos }}"
-    when: "subscription"
     tags: subscription
 
   - name: yum install and update packages
     include_role:
       name: yum
     vars:
-        packages: "{{ yum_packages }}"
+      packages: "{{ yum_packages }}"
+      update: "{{ yum_update | default(True) }}"
     tags: yum
 
   - name: configure docker
     include_role:
-      name: docker
+      name: docker-setup
     vars:
       device: "{{ docker_device }}"
       vg: "{{ docker_vg }}"
-    when: "dockerConfig"
     tags: docker
 
-  - name: generate ssh key and make sshless connection b/w hosts
+  - name: generate ssh key and make password less ssh connection b/w hosts
     include_role:
-      name: ssh-less
+      name: password-less-ssh
     vars:
       password: "{{ vm_password }}"
       hosts: "{{ play_hosts }}"
-    when: "sshLess"
     tags: ssh
 
   - name: reboot nodes and wait for it to come up
     include_role:
-      name: reboot-nodes 
-    when: "reboot"
+      name: node-reboot
     tags: reboot
