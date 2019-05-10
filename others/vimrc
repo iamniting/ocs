@@ -168,6 +168,13 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" add plain file stuff
+autocmd BufEnter * if &filetype == "" | setlocal ft=sh | endif
+
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
