@@ -10,7 +10,9 @@
       key_gen: False
     tags: always
 
-- hosts: all
+- hosts: 
+  - ocp-nodes
+  - glusterfs-nodes
   tasks:
   - name: subscription manager
     include_role:
@@ -36,6 +38,7 @@
     vars:
       device: "{{ docker_device }}"
       vg: "{{ docker_vg }}"
+    when: "inventory_hostname in groups['ocp-nodes']"
     tags: docker
 
   - name: generate ssh key and make password less ssh connection b/w hosts
@@ -43,7 +46,7 @@
       name: password-less-ssh
     vars:
       password: "{{ vm_password }}"
-      hosts: "{{ play_hosts }}"
+      hosts: "{{ groups['all'] }}"
     tags: ssh
 
   - name: reboot nodes and wait for it to come up

@@ -1,0 +1,14 @@
+---
+# subscription manager repos to enable
+subscription_repos: [
+  rhel-7-server-rpms,
+  rhel-7-server-extras-rpms,
+  rhel-7-server-optional-rpms,
+  rh-gluster-3-for-rhel-7-server-rpms,
+]
+
+# packages to install
+yum_packages: [
+  vim, screen, tree, wget, git, sshpass, sos, redhat-storage-server, gluster-block,
+]
+

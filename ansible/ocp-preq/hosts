@@ -1,0 +1,25 @@
+[ocp-nodes]
+node1 ansible_user=root
+node2 ansible_user=root
+node3 ansible_user=root
+
+[glusterfs-nodes]
+node4 ansible_user=root
+node5 ansible_user=root
+node6 ansible_user=root
+
+[all:vars]
+# password of system for password less ssh authentication
+vm_password=password
+# subscription manager account username and password
+subscription_username=user@redhat.com
+subscription_password=password
+
+[ocp-nodes:vars]
+yum_update=True
+# docker configuration
+docker_device=/dev/sdc
+docker_vg=docker-vg
+
+[glusterfs-nodes:vars]
+yum_update=False
