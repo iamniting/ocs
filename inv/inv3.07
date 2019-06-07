@@ -1,0 +1,49 @@
+[OSEv3:children]
+masters
+nodes
+etcd
+
+[OSEv3:vars]
+install_method=rpm
+os_update=false
+install_update_docker=true
+docker_storage_driver=devicemapper
+ansible_ssh_user=root
+openshift_release=v3.7
+oreg_url=registry.access.redhat.com/openshift3/ose-${component}:v3.7
+#openshift_cockpit_deployer_prefix=registry.access.redhat.com/openshift3/
+openshift_docker_additional_registries=registry.access.redhat.com
+openshift_docker_insecure_registries=registry.access.redhat.com
+openshift_deployment_type=openshift-enterprise
+openshift_web_console_install=true
+openshift_enable_service_catalog=false
+osm_use_cockpit=false
+osm_cockpit_plugins=['cockpit-kubernetes']
+openshift_node_kubelet_args={'pods-per-core': ['10'], 'max-pods': ['250'], 'image-gc-high-threshold': ['90'], 'image-gc-low-threshold': ['80']}
+openshift_hosted_registry_selector="role=node,registry=enabled"
+openshift_hosted_router_selector="role=node,router=enabled"
+debug_level=5
+openshift_set_hostname=true
+openshift_override_hostname_check=true
+openshift_disable_check="docker_image_availability, package_version"
+openshift_check_min_host_disk_gb=2
+openshift_check_min_host_memory_gb=1
+openshift_master_cluster_method=native
+openshift_clock_enabled=true
+
+
+openshift_master_cluster_hostname=node101
+openshift_master_cluster_public_hostname=node101
+
+[masters]
+node101
+
+[etcd]
+node101
+
+[nodes]
+node101 openshift_node_labels="{'role': 'node','region': 'primary'}"
+node102 openshift_node_labels="{'role': 'node','region': 'infra','registry': 'enabled','router': 'enabled'}"
+node103 openshift_node_labels="{'role': 'node','region': 'primary'}"
+node104 openshift_node_labels="{'role': 'node','region': 'primary'}"
+node105 openshift_node_labels="{'role': 'node','region': 'primary'}"
