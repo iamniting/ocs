@@ -6,21 +6,20 @@ glusterfs
 glusterfs_registry
 
 [OSEv3:vars]
-install_method=rpm
+ansible_ssh_user=root
+debug_level=5
 os_update=false
+install_method=rpm
 install_update_docker=true
 docker_storage_driver=devicemapper
-ansible_ssh_user=root
-openshift_release=v3.10
+container_runtime_docker_storage_setup_device=/dev/sdc
 oreg_url=registry.access.redhat.com/openshift3/ose-${component}:v3.10
-#openshift_cockpit_deployer_prefix=registry.access.redhat.com/openshift3/
+openshift_release=v3.10
+openshift_docker_additional_registries=registry.access.redhat.com
 openshift_docker_insecure_registries=registry.access.redhat.com
 openshift_deployment_type=openshift-enterprise
 openshift_web_console_install=true
 openshift_enable_service_catalog=false
-osm_use_cockpit=false
-osm_cockpit_plugins=['cockpit-kubernetes']
-debug_level=5
 openshift_set_hostname=true
 openshift_override_hostname_check=true
 openshift_disable_check=docker_image_availability
@@ -29,7 +28,11 @@ openshift_check_min_host_memory_gb=1
 openshift_portal_net=172.31.0.0/16
 openshift_master_cluster_method=native
 openshift_clock_enabled=true
-openshift_use_openshift_sdn=true 
+openshift_hosted_router_selector="node-role.kubernetes.io/infra=true"
+openshift_hosted_registry_selector="node-role.kubernetes.io/infra=true"
+openshift_use_openshift_sdn=true
+osm_use_cockpit=false
+osm_cockpit_plugins=['cockpit-kubernetes']
 
 openshift_master_dynamic_provisioning_enabled=true
 
@@ -79,7 +82,6 @@ openshift_storage_glusterfs_registry_block_host_vol_size=100
 # glusterfs_registry_storage
 openshift_hosted_registry_storage_kind=glusterfs
 openshift_hosted_registry_storage_volume_size=20Gi       
-openshift_hosted_registry_selector="node-role.kubernetes.io/infra=true"
 
 
 openshift_storage_glusterfs_heketi_admin_key='adminkey'
