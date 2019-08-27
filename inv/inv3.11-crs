@@ -49,7 +49,7 @@ openshift_logging_es_pvc_storage_class_name="glusterfs-registry-block"
 
 # metrics
 openshift_metrics_install_metrics=true
-openshift_metrics_storage_kind=dynamic
+openshift_metrics_cassandra_storage_type=pv
 openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
 openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra": "true"}
 openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"}
