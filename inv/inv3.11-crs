@@ -39,7 +39,9 @@ openshift_master_dynamic_provisioning_enabled=true
 
 # logging
 openshift_logging_install_logging=true
-openshift_logging_es_pvc_dynamic=true
+openshift_logging_storage_kind=dynamic
+openshift_logging_elasticsearch_pvc_dynamic=true
+openshift_logging_es_cluster_size=3
 openshift_logging_kibana_nodeselector={"node-role.kubernetes.io/infra": "true"}
 openshift_logging_curator_nodeselector={"node-role.kubernetes.io/infra": "true"}
 openshift_logging_es_nodeselector={"node-role.kubernetes.io/infra": "true"}
