@@ -125,11 +125,11 @@ node103.redhat.com openshift_node_group_name="node-config-compute"
 node104.redhat.com openshift_node_group_name="node-config-compute"
 
 [glusterfs]
-node105.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node105_ip glusterfs_cluster=1
-node106.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node106_ip glusterfs_cluster=1
-node107.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node107_ip glusterfs_cluster=1
+node105.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node105_ip 
+node106.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node106_ip 
+node107.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node107_ip 
 
 [glusterfs_registry]
-node108.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node108_ip glusterfs_cluster=1
-node109.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node109_ip glusterfs_cluster=1
-node110.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_ip=node110_ip glusterfs_cluster=1
+node108.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node108_ip 
+node109.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node109_ip 
+node110.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1 glusterfs_ip=node110_ip 
