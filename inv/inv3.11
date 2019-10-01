@@ -117,11 +117,11 @@ node107.redhat.com openshift_node_group_name="node-config-compute"
 node108.redhat.com openshift_node_group_name="node-config-compute"
 
 [glusterfs]
-node103.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
-node104.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
-node105.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
+node103.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
+node104.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
+node105.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
 
 [glusterfs_registry]
-node106.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]'
-node107.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]'
-node108.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]'
+node106.redhat.com glusterfs_zone=1 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
+node107.redhat.com glusterfs_zone=2 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
+node108.redhat.com glusterfs_zone=3 glusterfs_devices='["/dev/sdd"]' glusterfs_cluster=1
