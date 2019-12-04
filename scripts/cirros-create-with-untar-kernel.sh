@@ -56,7 +56,7 @@ spec:
         volumeMounts:
         - mountPath: '/mnt'
           name: cirros-volume
-        command: ['sh', '-c', 'wget http://ftp.riken.jp/Linux/kernel.org/linux/kernel/v4.x/linux-4.0.tar.gz -P /mnt; while sleep 5; do rm -rf linux-4.0; zcat /mnt/linux-4.0.tar.gz | tar -xvf - -C /mnt; done']
+        command: ['sh', '-c', 'wget http://ftp.riken.jp/Linux/kernel.org/linux/kernel/v4.x/linux-4.0.tar.gz -P /mnt; while sleep 5; do rm -rf /mnt/linux-4.0; sleep 5; zcat /mnt/linux-4.0.tar.gz | tar -xvf - -C /mnt; done']
       livenessProbe:
         initialDelaySeconds: 3
         periodSeconds: 3
