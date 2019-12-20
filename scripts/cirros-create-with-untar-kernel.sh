@@ -70,7 +70,7 @@ spec:
           initialDelaySeconds: 3
           periodSeconds: 3
           exec:
-            command: ['sh', '-ec', 'touch /mnt/file; rm -rf /mnt/file']
+            command: ['sh', '-c', 'touch /mnt/\$MY_POD_NAME/file; rm -rf /mnt/\$MY_POD_NAME/file']
   replicas: 1
   triggers:
     - type: 'ConfigChange'
