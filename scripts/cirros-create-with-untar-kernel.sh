@@ -51,7 +51,12 @@ spec:
           path: $VOL_NAME
         name: cirros-volume
       containers:
-      - name: 'cirros'
+      - env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        name: 'cirros'
         image: 'cirros:latest'
         imagePullPolicy: 'IfNotPresent'
         volumeMounts:
