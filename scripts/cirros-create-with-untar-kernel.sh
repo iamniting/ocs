@@ -66,6 +66,10 @@ spec:
             wget http://ftp.riken.jp/Linux/kernel.org/linux/kernel/v4.x/linux-4.0.tar.gz -P /mnt/\$MY_POD_NAME/;
             while ls /home/flag; do rm -rf /mnt/\$MY_POD_NAME/linux-4.0; sleep 5; zcat /mnt/\$MY_POD_NAME/linux-4.0.tar.gz | tar -xvf - -C /mnt/\$MY_POD_NAME; sleep 5; done;
             while true; do sleep 60; done']
+        lifecycle:
+          preStop:
+            exec:
+              command: ['sh', '-c', 'rm -rf /home/flag; kill -9 \$(cat /proc/1/task/1/children); rm -rf /mnt/\$MY_POD_NAME']
         livenessProbe:
           initialDelaySeconds: 3
           periodSeconds: 3
