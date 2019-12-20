@@ -44,6 +44,7 @@ spec:
         name: '$DC_NAME'
     spec:
       restartPolicy: 'Always'
+      terminationGracePeriodSeconds: 60
       volumes:
       - glusterfs:
           endpoints: $EP_NAME
