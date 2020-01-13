@@ -10,13 +10,16 @@ secretNameSpace=glusterfs
 heketiRoute=heketi-storage
 restUrl=`oc get route $heketiRoute -n $secretNameSpace --no-headers\
     -o=custom-columns=:.spec.host`
+provisioner=`oc get dc -l glusterblock -n $secretNameSpace -o yaml\
+    -o=custom-columns=":.spec.template.spec.containers[0].env[?(@.name==\
+    \"PROVISIONER_NAME\")]".value`
 
 echo "apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: $name
 reclaimPolicy: Delete
-provisioner: gluster.org/glusterblock
+provisioner: "$provisioner"
 parameters:
   resturl: http://$restUrl
   restuser: admin
