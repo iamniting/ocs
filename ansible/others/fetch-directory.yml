@@ -1,0 +1,25 @@
+ hosts: all
+  vars:
+    src_server: /root/
+    dest_local: /root/fetch/
+    Files: []
+  tasks:
+  - name: use find to get the files to fetch
+    find:
+      paths: "{{ src_server }}"
+      recurse: yes
+    register: find_output
+ 
+  - name: Adding Files to the LIST
+    no_log: True
+    set_fact:
+      Files: "{{ Files + [item.path]}}"
+    with_items: "{{ find_output.files }}"
+ 
+  - debug: var=Files
+ 
+  - name: use fetch to get the files
+    fetch:
+      src: "{{ item }}"
+      dest: "{{ dest_local }}"
+    with_items: "{{ Files }}"
