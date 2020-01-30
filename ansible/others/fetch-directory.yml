@@ -1,4 +1,7 @@
- hosts: all
+# We can pass hosts, src_server, dest_local via cmd line
+
+---
+- hosts: "{{ hosts | default('all') }}"
   vars:
     src_server: /root/
     dest_local: /root/fetch/
