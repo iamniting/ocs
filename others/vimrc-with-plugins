@@ -3,8 +3,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on
-
 " Sets how many lines of history VIM has to remember
 set history=500
 
@@ -111,23 +109,21 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Set Column, CursorLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" highlight current line
-hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=NONE
+" highlight cursorline line
 set cursorline
+highlight CursorLine cterm=None ctermbg=darkgrey
 
-" set textwidth to have 80 columns
-set tw=80
-
-" set colorcolumn to 80
+" set colorcolumn to 80 and highlight it with grey color
 set cc=80
-
-" set colorcolumn line to grey
-highlight ColorColumn ctermbg=8 guibg=lightgrey
+highlight ColorColumn ctermbg=8 guibg=darkgrey
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set textwidth to have 80 columns
+set tw=80
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -221,7 +217,7 @@ endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
- 
+
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -229,6 +225,9 @@ Plug 'morhetz/gruvbox'
 Plug 'powerline/powerline',  {'rtp': 'powerline/bindings/vim/'}
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'frazrepo/vim-rainbow'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -261,6 +260,20 @@ endfun
 " => gruvbox plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
-hi Normal ctermbg=NONE guibg=NONE
+
+highlight Normal ctermbg=NONE guibg=NONE
+
 set notermguicolors
 set termguicolors
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => nerdtree plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>e :NERDTreeToggle<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-rainbow plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:rainbow_active = 1
