@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: refresh-block-size
+spec:
+  completions: 1
+  template:
+    spec:
+      containers:
+        - image: rhel7
+          command: ['sh', '-c', 'echo -e "# yum install xfsprogs -y" && yum install xfsprogs -y && 
+              echo -e "\n# df -Th /mnt" && df -Th /mnt && 
+              echo -e "\n# xfs_growfs /mnt" && xfs_growfs /mnt && 
+              echo -e "\n# df -Th /mnt" && df -Th /mnt']
+          name: rhel7
+          volumeMounts:
+            - mountPath: /mnt
+              name: block-pvc
+            - mountPath: /dev
+              name: host-dev
+          securityContext:
+            privileged: true
+      volumes:
+        - name: block-pvc
+          persistentVolumeClaim:
+            claimName: <PVC-NAME>
+        - name: host-dev
+          hostPath:
+            path: /dev
+      restartPolicy: Never
