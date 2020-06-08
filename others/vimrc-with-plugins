@@ -134,9 +134,9 @@ set smarttab
 set shiftwidth=4
 " set tabstop=4
 
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap lines
+set ai " Auto indent
+set si " Smart indent
+set wrap " Wrap lines
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
@@ -216,20 +216,23 @@ endfun
 " => Vim-Plug Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
+try
+    call plug#begin('~/.vim/plugged')
 
-Plug 'fatih/vim-go'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'morhetz/gruvbox'
-Plug 'powerline/powerline',  {'rtp': 'powerline/bindings/vim/'}
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'preservim/nerdtree'
-Plug 'frazrepo/vim-rainbow'
-Plug 'jiangmiao/auto-pairs'
-
-call plug#end()
+    Plug 'fatih/vim-go'
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'morhetz/gruvbox'
+    Plug 'powerline/powerline',  {'rtp': 'powerline/bindings/vim/'}
+    " Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline-themes'
+    Plug 'preservim/nerdtree'
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'jiangmiao/auto-pairs'
+    
+    call plug#end()
+catch
+endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -259,12 +262,15 @@ endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gruvbox plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox
+try
+    colorscheme gruvbox
+    
+    highlight Normal ctermbg=NONE guibg=NONE
 
-highlight Normal ctermbg=NONE guibg=NONE
-
-set notermguicolors
-set termguicolors
+    set notermguicolors
+    set termguicolors
+catch
+endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -277,3 +283,11 @@ nmap <leader>e :NERDTreeToggle<CR>
 " => vim-rainbow plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-go plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap gi :GoImports<CR>
+nmap gf :GoFmt<CR>
+nmap gr :GoRun %<CR>
