@@ -122,7 +122,7 @@ highlight ColorColumn ctermbg=8 guibg=darkgrey
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set textwidth to have 80 columns
-set tw=80
+" set tw=80
 
 " Use spaces instead of tabs
 set expandtab
