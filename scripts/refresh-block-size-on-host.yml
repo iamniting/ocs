@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: refresh-block-size
+spec:
+  completions: 1
+  template:
+    spec:
+      containers:
+        - image: rhel7
+          env:
+            - name: HOST_ROOTFS
+              value: "/rootfs"
+            - name: EXEC_ON_HOST
+              value: "nsenter --root=$(HOST_ROOTFS) nsenter -t 1 -m"
+          command: ['sh', '-c', 'echo -e "# df -Th /mnt" && df -Th /mnt &&
+            DEVICE=$(df --output=source /mnt | sed -e /^Filesystem/d) &&
+            MOUNTPOINT=$($EXEC_ON_HOST lsblk $DEVICE -n -o MOUNTPOINT) &&
+            $EXEC_ON_HOST xfs_growfs $MOUNTPOINT > /dev/null &&
+            echo -e "\n# df -Th /mnt" && df -Th /mnt']
+          name: rhel7
+          volumeMounts:
+            - mountPath: /mnt
+              name: block-pvc
+            - mountPath: /dev
+              name: host-dev
+            - mountPath: /rootfs
+              name: host-rootfs
+          securityContext:
+            privileged: true
+      volumes:
+        - name: block-pvc
+          persistentVolumeClaim:
+            claimName: <PVC-NAME>
+        - name: host-dev
+          hostPath:
+            path: /dev
+        - name: host-rootfs
+          hostPath:
+            path: /
+      restartPolicy: Never
