@@ -216,23 +216,25 @@ endfun
 " => Vim-Plug Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins will be downloaded under the specified directory.
-try
-    call plug#begin('~/.vim/plugged')
+if version >= 800
+    try
+        call plug#begin('~/.vim/plugged')
 
-    Plug 'fatih/vim-go'
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'morhetz/gruvbox'
-    Plug 'powerline/powerline',  {'rtp': 'powerline/bindings/vim/'}
-    " Plug 'vim-airline/vim-airline'
-    " Plug 'vim-airline/vim-airline-themes'
-    Plug 'preservim/nerdtree'
-    Plug 'frazrepo/vim-rainbow'
-    Plug 'jiangmiao/auto-pairs'
+        Plug 'fatih/vim-go'
+        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'morhetz/gruvbox'
+        Plug 'powerline/powerline',  {'rtp': 'powerline/bindings/vim/'}
+        " Plug 'vim-airline/vim-airline'
+        " Plug 'vim-airline/vim-airline-themes'
+        Plug 'preservim/nerdtree'
+        Plug 'frazrepo/vim-rainbow'
+        Plug 'jiangmiao/auto-pairs'
     
-    call plug#end()
-catch
-endtry
+        call plug#end()
+    catch
+    endtry
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -262,15 +264,16 @@ endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gruvbox plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-try
-    colorscheme gruvbox
+if version >= 800 && exists(":Plug")
+    try
+        colorscheme gruvbox
     
-    highlight Normal ctermbg=NONE guibg=NONE
-
-    set notermguicolors
-    set termguicolors
-catch
-endtry
+        highlight Normal ctermbg=NONE guibg=NONE
+        set notermguicolors
+        set termguicolors
+    catch
+    endtry
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
