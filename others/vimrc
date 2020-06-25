@@ -294,3 +294,9 @@ let g:rainbow_active = 1
 nmap gi :GoImports<CR>
 nmap gf :GoFmt<CR>
 nmap gr :GoRun %<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => fzf plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>f :FZF<CR>
