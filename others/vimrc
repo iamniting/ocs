@@ -33,6 +33,8 @@ command Wq wq
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nu
+
 "Always show current position
 set ruler
 
