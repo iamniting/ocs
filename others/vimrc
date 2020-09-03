@@ -20,13 +20,13 @@ let mapleader = " "
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command Ws w !sudo tee % > /dev/null
 
 " (useful for handling command error while saving file)
-command W w                                                                     
-command Wqa wqa                                                                 
+command W w
+command Wqa wqa
 command Wq wq
 
 
@@ -180,7 +180,8 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.go,*.py,*.sh :call CleanExtraSpaces()
+    autocmd BufWritePre *.go,*.py,*.sh,*.yml,*.yaml,.spec,.vimrc,.bashrc
+                \ :call CleanExtraSpaces()
 endif
 
 
@@ -230,9 +231,13 @@ if version >= 800
         " Plug 'vim-airline/vim-airline'
         " Plug 'vim-airline/vim-airline-themes'
         Plug 'preservim/nerdtree'
+        Plug 'preservim/nerdcommenter'
         Plug 'frazrepo/vim-rainbow'
         Plug 'jiangmiao/auto-pairs'
-    
+        Plug 'airblade/vim-gitgutter'
+        Plug 'tpope/vim-fugitive'
+        Plug 'vimwiki/vimwiki'
+
         call plug#end()
     catch
     endtry
@@ -269,7 +274,7 @@ endfun
 if version >= 800 && exists(":Plug")
     try
         colorscheme gruvbox
-    
+
         highlight Normal ctermbg=NONE guibg=NONE
         set notermguicolors
         set termguicolors
@@ -282,6 +287,33 @@ endif
 " => nerdtree plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>e :NERDTreeToggle<CR>
+
+if version >= 800 && exists(":Plug")
+    try
+        " open a NERDTree when vim starts up and no files were specified
+        " autocmd StdinReadPre * let s:std_in=1
+        " autocmd VimEnter * if argc() == 0 && !exists("s:std_in")
+        "             \ | NERDTree | endif
+
+        " close vim if the only window left open is a NERDTree
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
+                    \ && b:NERDTree.isTabTree()) | q | endif
+
+        " NERDTress File highlighting
+        function! NERDTreeHighlightFile(extension, guifg)
+                exec 'autocmd filetype nerdtree highlight ' . a:extension .
+                            \ ' ctermfg='. "NONE" .' ctermbg='. "NONE" .
+                            \ ' guifg='. a:guifg .' guibg='. "NONE"
+                exec 'autocmd filetype nerdtree syn match ' . a:extension .
+                            \ ' #^\s\+.*'. a:extension .'$#'
+        endfunction
+
+        call NERDTreeHighlightFile('go', '#3498DB')
+        call NERDTreeHighlightFile('py', '#F4D03F')
+        call NERDTreeHighlightFile('sh', '#59FF00')
+    catch
+    endtry
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
