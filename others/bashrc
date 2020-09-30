@@ -1,15 +1,25 @@
 # .bashrc
- 
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
 # User specific aliases and functions
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias ls='ls --color --group-directories-first'
+alias grep='grep --color -n'
 alias sshr='ssh -l root'
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
+alias mkv-merge='mkvmerge -d 0 -a 1,2 -s 3,4 -M -B -T \
+    --no-global-tags --no-chapters --title "" \
+    --language 0:und --track-name 0:"" --default-track 0:true \
+    --language 1:und --track-name 1:"" --default-track 1:true \
+    --language 2:und --track-name 2:"" --default-track 2:true \
+    --language 3:und --track-name 3:"" --default-track 3:true \
+    --language 4:und --track-name 4:"" --default-track 4:true'
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
@@ -20,26 +30,55 @@ export PATH
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
- 
+
 # don't put duplicate lines in the history.
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
- 
+
 # append to the history file, don't overwrite it
 shopt -s histappend
- 
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
- 
+HISTSIZE=10000
+HISTFILESIZE=20000
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-git_branch() { git symbolic-ref --short HEAD 2>/dev/null; }
-git_pre() { if git branch > /dev/null 2>&1; then echo ─[; fi }
-git_post() { if git branch > /dev/null 2>&1; then echo ]; fi }
+# colors
+RED='\[\e[31m\]'
+GREEN='\[\e[32m\]'
+YELLOW='\[\e[33m\]'
+BLUE='\[\e[34m\]'
+CYAN='\[\e[36m\]'
+BRIGHT='\[\e[01m\]'
+NORMAL='\[\e[00m\]'
+WHITE='\[\e[37m\]'
+ORANGE='\[\e[38;5;214m\]'
+SAND='\[\e[38;5;216m\]'
 
-PS1="\n\[\033[01;31m\]\342\224\214\342\224\200\[\e[01;31m\][\[\e[03;0m\]\u\[\e[01;33m\]ॐ \[\e[01;96m\]\h\[\e[01;31m\]]\[\e[01;31m\]─\[\e[01;31m\][\[\e[00;32m\]\w\[\e[01;31m\]]\$(git_pre)\[\e[03;33m\]\$(git_branch)\[\e[01;0m\]\[\e[01;31m\]\$(git_post)\n\[\033[01;31m\]\342\224\224\342\224\200\342\224\200\342\225\274\[\e[01;33m\]\$\[\e[01;0m\] "
+gitBranch() {
+    if git branch > /dev/null 2>&1; then
+        echo "  $(git symbolic-ref --short HEAD)";
+    fi
+}
 
-PS1="\[\e[01;37m\][\[\e[0m\]\[\e[01;0m\]\u\[\e[0m\]\[\e[01;33m\]ॐ \[\e[0m\]\[\e[01;34m\]\h\[\e[0m\]\[\e[00;37m\]\[\e[0m\]\[\e[00;32m\] \W\[\e[01;37m\]]\\$ \[\e[0m\]"
+PS1="\n$BRIGHT$RED┌─[$NORMAL\u$BRIGHT$ORANGEॐ $CYAN\h $NORMAL$GREEN\w$SAND\$(gitBranch)$BRIGHT$RED]\n$BRIGHT$RED└──╼$YELLOW$ $NORMAL"
+PS1="$BRIGHT$WHITE[$NORMAL\u$BRIGHT$ORANGEॐ $BLUE\h $NORMAL$GREEN\w$SAND\$(gitBranch)$BRIGHT$WHITE]$ $NORMAL"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export OC_EDITOR="vim"
+export AWS_PROFILE=""
+export KUBECONFIG=~/Downloads/kubeconfig:~/.kube/kubeconfig:~/code/ocp/auth/kubeconfig
+
+export GOPATH=~/code/go
+export PATH=$PATH:$GOPATH/bin
+
+code=~/code
+heketi=$GOPATH/src/github.com/heketi/heketi
+noobaa=$GOPATH/src/github.com/noobaa/noobaa-operator
+ocs=$GOPATH/src/github.com/openshift/ocs-operator
+ocsrook=$GOPATH/src/github.com/openshift/rook
+rook=$GOPATH/src/github.com/rook/rook
