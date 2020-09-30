@@ -180,8 +180,8 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.go,*.py,*.sh,*.yml,*.yaml,.spec,.vimrc,.bashrc
-                \ :call CleanExtraSpaces()
+    autocmd BufWritePre *.go,*.py,*.sh,*.yml,*.yaml,.spec,.vimrc,.bashrc,
+                \vimrc,bashrc,* :call CleanExtraSpaces()
 endif
 
 
@@ -334,3 +334,9 @@ nmap gr :GoRun %<CR>
 " => fzf plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>f :FZF<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-gitgutter plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>g :GitGutterToggle<CR>
